@@ -1,0 +1,86 @@
+/* ==========================================================================
+	Buttons
+============================================================================= */
+
+button {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+@mixin button() {
+	background: $gray_10;
+	padding: 10px;
+	transition:
+		background $base_speed,
+		border $base_speed,
+		box-shadow $base_speed,
+		color $base_speed,
+		transform $base_speed;
+}
+
+@mixin button_color($color: $gray_10) {
+	background: $color;
+}
+
+@mixin button_inline() {
+	@include button;
+
+	display: inline-block;
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+
+@mixin button_block() {
+	@include button;
+
+	display: block;
+	text-align: center;
+}
+
+@mixin button_mixed_block() {
+	@include button_block;
+
+	@media #{$min_xs} {
+		display: inline-block;
+		margin-right: 8px;
+		margin-bottom: 8px;
+		text-align: left;
+	}
+}
+
+
+/* Skip Link
+============================================================================= */
+
+.skip_link {
+	@include button_inline;
+
+	position: absolute;
+	top: 0;
+	left: 50%;
+	z-index: 100;
+
+	display: block;
+	padding: 10px 20px;
+	text-align: center;
+	transform: translate(-50%, -200%);
+	transition:
+		top 0.35s,
+		transform 0.35s;
+
+	&:focus,
+	&:active {
+		outline: 2px solid #000;
+		transform: translate(-50%, 20px);
+	}
+
+	.no-csstransforms & {
+		top: -100%;
+
+		&:focus,
+		&:active {
+			top: 20px;
+		}
+	}
+}

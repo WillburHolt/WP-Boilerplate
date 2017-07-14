@@ -1,0 +1,38 @@
+/* ==========================================================================
+	Breadcrumb Navigation
+============================================================================= */
+
+.breadcrumb_nav {}
+
+
+// Breadcrumb Links
+// =============================================================================
+
+.breadcrumb_list {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.breadcrumb_item {
+	display: inline-block;
+
+	&:not(:last-child) {
+
+		&:after {
+			content: "/";
+		}
+	}
+}
+
+.breadcrumb_link,
+.breadcrumb_label {
+	display: inline-block;
+}
+
+.breadcrumb_link {
+
+	&:focus,
+	&:hover {}
+}
+
+.breadcrumb_label {}

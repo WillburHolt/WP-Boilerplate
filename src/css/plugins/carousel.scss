@@ -1,0 +1,46 @@
+/* ==========================================================================
+	Carousel
+============================================================================= */
+
+.fs-carousel-item {
+
+	&.fs-carousel-visible {}
+}
+
+
+// Controls
+// =============================================================================
+
+.fs-carousel-controls {}
+
+.fs-carousel-control {
+
+	&:focus,
+	&:hover {}
+
+	&.fs-carousel-visible {}
+}
+
+
+// Pagination
+// =============================================================================
+
+.fs-carousel-pagination {
+	text-align: center;
+}
+
+.fs-carousel-page {
+	height: 8px;
+	width: 8px;
+
+	position: relative;
+
+	border-radius: 50%;
+	color: transparent;
+	overflow: hidden;
+
+	&:focus,
+	&:hover {}
+
+	&.fs-carousel-active {}
+}

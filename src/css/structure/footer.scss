@@ -1,0 +1,37 @@
+/* ==========================================================================
+	Footer
+============================================================================= */
+
+.footer {
+	background: #eee;
+	padding: 20px 0;
+
+	@media print {
+		display: none;
+	}
+}
+
+.footer_ribbon {}
+
+
+// Address
+// =============================================================================
+
+.footer_address {}
+
+.footer_address_name {}
+
+.footer_address_street {}
+
+.footer_address_city {}
+
+.footer_address_state {}
+
+.footer_address_zip {}
+
+.footer_address_phone {
+
+	a {
+		color: inherit;
+	}
+}

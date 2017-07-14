@@ -1,0 +1,10 @@
+// Fonts
+// =============================================================================
+
+@mixin family($weight: null) {
+	font-family: "font_family_name", sans-serif;
+
+	@if $weight != null {
+		font-weight: $weight;
+	}
+}
