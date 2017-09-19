@@ -20,7 +20,7 @@
 	$navigation = wp_get_nav_menu_items($menu_name);
 	$post_id = get_the_ID();
 
-	if (null !== $navigation) {
+	if (!empty($navigation)) {
 ?>
 <div class="social_nav<?php if ($modifier) echo " social_nav_$modifier"; ?>" itemscope itemtype="http://schema.org/Organization">
 	<link itemprop="url" href="<?=get_site_url()?>">

@@ -17,7 +17,7 @@
 	$navigation = Boilerplate::getParsedMenuArray(wp_get_nav_menu_items($menu_name), 2);
 	$post_id = get_the_ID();
 
-	if (null !== $navigation) {
+	if (!empty($navigation)) {
 ?>
 <nav class="js-main-nav main_nav<?php if ($modifier) echo " main_nav_$modifier"; ?>" aria-label="<?=$title?>" itemscope itemtype="http://schema.org/SiteNavigationElement">
 	<?php if ($title) { ?>

@@ -15,29 +15,31 @@
 	// Everything is stored in our namespace.
 	namespace Boilerplate;
 
-	$full_menu = wp_get_nav_menu_items($menu_name);
-	$sub_nav = Boilerplate::getParsedMenuArray($full_menu, 8);
+	$navigation_items = wp_get_nav_menu_items($menu_name);
+	$navigation = Boilerplate::getParsedMenuArray($navigation_items, 8);
 
-	// Get top level page ID
-	$post_ancestors = get_ancestors();
+	if (!empty($navigation)) {
 
-	if (count($post_ancestors)) {
-		$top_level_id = $post_ancestors[count($post_ancestors) - 1];
-	} else {
-		$top_level_id = get_the_ID();
-	}
+		// Get top level page ID
+		$post_ancestors = get_ancestors();
 
-	// Determine which branch of the nav to draw
-	$branch_to_draw = false;
-
-	foreach ($sub_nav as $level) {
-		if ($level->object_id === $top_level_id) {
-			$branch_to_draw = $level;
+		if (count($post_ancestors)) {
+			$top_level_id = $post_ancestors[count($post_ancestors) - 1];
+		} else {
+			$top_level_id = get_the_ID();
 		}
-	}
 
-	if ($branch_to_draw && count($branch_to_draw->children)) {
-		define('SUBNAV_DRAWN', true);
+		// Determine which branch of the nav to draw
+		$branch_to_draw = false;
+
+		foreach ($navigation as $level) {
+			if ($level->object_id === $top_level_id) {
+				$branch_to_draw = $level;
+			}
+		}
+
+		if ($branch_to_draw && count($branch_to_draw->children)) {
+			define('SUBNAV_DRAWN', true);
 ?>
 <nav class="sub_nav" aria-label="Additional Navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 	<button class="js-sub_nav_handle sub_nav_handle"><?php _e('Additional Navigation'); ?></button>
