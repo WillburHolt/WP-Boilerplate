@@ -44,6 +44,7 @@ var source = {
 	accessibility: 'static/accessibility/*.html',
 	sitemap: 'src/twig/index.twig',
 	sass: 'src/css/site.scss',
+	editor: 'src/css/editor-style.scss',
 	jshint: 'src/js/modules/*.js',
 	modernizr: [
 		'js/modules/*.js',
@@ -188,6 +189,34 @@ gulp.task('sass', function() {
 			log: true
 		})))
 		.pipe(gulpif(util.env.production, gulp.dest('css')));
+
+		return gulp.src(source.editor)
+			.pipe(sassGlob())
+			.pipe(sass().on('error', sass.logError))
+			.pipe(postcss([
+				require('postcss-pxtorem')({
+					propList: [
+						'font-size',
+						'letter-spacing'
+					],
+					replace: false
+				}),
+				require('autoprefixer')({
+					browsers: [
+						'> 1%',
+						'last 2 versions',
+						'ie >= 10'
+					]
+				})
+			]))
+			.pipe(gulpif(util.env.production, cssnano()))
+			.pipe(gulp.dest('css'))
+			.pipe(browserSync.stream())
+			.pipe(gulpif(util.env.production, bless({
+				cacheBuster: false,
+				log: true
+			})))
+			.pipe(gulpif(util.env.production, gulp.dest('css')));
 
 });
 
