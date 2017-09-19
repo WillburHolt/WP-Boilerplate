@@ -82,6 +82,10 @@
 			static::drawPagination();
 		}
 
+		public static function draw404Page($label, $title, $description = false, $links = false, $background = false, $theme = false) {
+			include get_stylesheet_directory().'/template-parts/components/full-width/flexible-callout.php';
+		}
+
 		/**
 		 * WYSIWYG Content.
 		 *
