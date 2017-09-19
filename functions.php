@@ -279,9 +279,9 @@
 
 	// Enqueue styles and scripts.
 	function enqueue_scripts() {
-		wp_enqueue_style('site', get_parent_theme_file_path().'/css/site.css');
-		wp_enqueue_script('modernizr', get_parent_theme_file_path().'/js/modernizr.js');
-		wp_enqueue_script('site', get_parent_theme_file_path().'/js/site.js', [], false, true);
+		wp_enqueue_style('site', get_stylesheet_directory_uri().'/css/site.css');
+		wp_enqueue_script('modernizr', get_stylesheet_directory_uri().'/js/modernizr.js');
+		wp_enqueue_script('site', get_stylesheet_directory_uri().'/js/site.js', [], false, true);
 	}
 	add_action('wp_enqueue_scripts', 'Boilerplate\enqueue_scripts');
 
