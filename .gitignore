@@ -1,3 +1,7 @@
 .DS_store
+css/
+images/
+js/
 node_cache/
 node_modules/
+static/
