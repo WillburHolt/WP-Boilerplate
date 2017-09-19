@@ -39,6 +39,14 @@
 			'capability'	=> 'edit_pages',
 			'parent_slug' => 'edit.php'
 		]);
+
+		acf_add_options_sub_page([
+			'page_title' 	=> '404 Error Page',
+			'menu_title'	=> '404 Error Page',
+			'menu_slug' 	=> '404-page-options',
+			'capability'	=> 'edit_theme_options',
+			'parent_slug' => 'themes.php'
+		]);
 	}
 
 	function init() {
