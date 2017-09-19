@@ -14,11 +14,11 @@
 
 	// Define Advanced Custom Fields.
 	$theme = isset($callout['theme']) ? $callout['theme'] : false;
-	$background = $callout['background'];
-	$label = $callout['label'];
-	$title = $callout['title'];
-	$description = $callout['description'];
-	$links = $callout['links'];
+	$background = isset($callout['background']) ? $callout['background'] : $background;
+	$label = isset($callout['label']) ? $callout['label'] : $label;
+	$title = isset($callout['title']) ? $callout['title'] : $title;
+	$description = isset($callout['description']) ? $callout['description'] : $description;
+	$links = isset($callout['links']) ? $callout['links'] : $links;
 ?>
 <section class="flex_callout<?php if ($theme) echo " theme_$theme"; ?>">
 	<?php
