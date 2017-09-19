@@ -16,6 +16,8 @@
 
 	$navigation = wp_get_nav_menu_items($menu_name);
 	$post_id = get_the_ID();
+
+	if (null !== $navigation) {
 ?>
 <nav class="<?=$class?><?php if ($modifier) echo " $class\_$modifier"; ?>" aria-label="<?=$title?>" itemscope itemtype="http://schema.org/SiteNavigationElement">
 	<?php if ($title) { ?>
@@ -52,3 +54,4 @@
 		?>
 	</div>
 </nav>
+<?php } ?>
