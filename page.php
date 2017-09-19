@@ -15,9 +15,6 @@
 	// Everything is stored in our namespace.
 	namespace Boilerplate;
 
-	// Redefine our global template variables for use.
-	global $template_variables;
-
 	get_header();
 
 	while (have_posts()) {

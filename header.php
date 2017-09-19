@@ -15,9 +15,6 @@
 	// Everything is stored in our namespace.
 	namespace Boilerplate;
 
-	// Redefine our global template variables for use.
-	global $template_variables;
-
 	// Define site variables.
 	$site_name = get_bloginfo('name');
 	$post_id = get_the_ID();
