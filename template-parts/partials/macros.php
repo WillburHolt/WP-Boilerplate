@@ -18,7 +18,7 @@
 
 		public static function drawCallouts($callouts, $slug, $post_id) {
 			if (is_array($callouts) && count($callouts)) {
-				$base = get_stylesheet_directory();
+				$base = get_template_directory();
 				foreach ($callouts as $callout) {
 					include "$base/template-parts/components/$slug/".str_replace('_', '-', $callout['acf_fc_layout']).'.php';
 				}
@@ -26,23 +26,23 @@
 		}
 
 		public static function drawLogo($modifier, $symbol) {
-			include get_stylesheet_directory().'/template-parts/partials/logo.php';
+			include get_template_directory().'/template-parts/partials/logo.php';
 		}
 
 		public static function drawBasicNav($menu_name, $class, $title = false, $modifier = false) {
-			include get_stylesheet_directory().'/template-parts/partials/navigation/basic.php';
+			include get_template_directory().'/template-parts/partials/navigation/basic.php';
 		}
 
 		public static function drawMainNav($menu_name = 'Main Navigation', $title = 'Main Navigation', $modifier = false) {
-			include get_stylesheet_directory().'/template-parts/partials/navigation/main.php';
+			include get_template_directory().'/template-parts/partials/navigation/main.php';
 		}
 
 		public static function drawSubNav($menu_name = 'Main Navigation') {
-			include get_stylesheet_directory().'/template-parts/partials/navigation/sub.php';
+			include get_template_directory().'/template-parts/partials/navigation/sub.php';
 		}
 
 		public static function drawSocialNav($menu_name = 'Social Navigation', $title = 'Social Navigation', $modifier = false) {
-			include get_stylesheet_directory().'/template-parts/partials/navigation/social.php';
+			include get_template_directory().'/template-parts/partials/navigation/social.php';
 		}
 
 		public static function drawSearch($placeholder = 'Submit', $button_label = 'Submit', $modifier = false, $theme = false) {
@@ -51,39 +51,45 @@
 		}
 
 		public static function drawSearchForm($placeholder = 'Search', $button_label = 'Submit', $modifier = false) {
-			include get_stylesheet_directory().'/template-parts/partials/search.php';
+			include get_template_directory().'/template-parts/partials/search.php';
 		}
 
 		public static function drawGoogleCSE($theme = false) {
-			include get_stylesheet_directory().'/template-parts/partials/google-cse.php';
+			include get_template_directory().'/template-parts/partials/google-cse.php';
 		}
 
 		public static function drawPagination() {
-			include get_stylesheet_directory().'/template-parts/partials/pagination.php';
+			include get_template_directory().'/template-parts/partials/pagination.php';
 		}
 
 		public static function drawBreadcrumb($modifier = false) {
-			include get_stylesheet_directory().'/template-parts/partials/navigation/breadcrumb.php';
+			include get_template_directory().'/template-parts/partials/navigation/breadcrumb.php';
 		}
 
 		public static function drawAddress() {
-			include get_stylesheet_directory().'/template-parts/partials/address.php';
+			include get_template_directory().'/template-parts/partials/address.php';
 		}
 
 		public static function drawBlogListing() {
 			global $post;
-			include get_stylesheet_directory().'/template-parts/components/full-width/blog-list.php';
+			include get_template_directory().'/template-parts/components/full-width/blog-list.php';
 			static::drawPagination();
 		}
 
 		public static function drawArchiveListing() {
 			global $post;
-			include get_stylesheet_directory().'/template-parts/components/full-width/archive-list.php';
+			include get_template_directory().'/template-parts/components/full-width/archive-list.php';
 			static::drawPagination();
 		}
 
 		public static function draw404Page($label, $title, $description = false, $links = false, $background = false, $theme = false) {
-			include get_stylesheet_directory().'/template-parts/components/full-width/flexible-callout.php';
+			include get_template_directory().'/template-parts/components/full-width/flexible-callout.php';
+		}
+
+		public static function drawSymbolSprite() {
+			echo '<figure style="display: none;">';
+			include get_template_directory().'/images/icons.svg';
+			echo '</figure>';
 		}
 
 		/**
