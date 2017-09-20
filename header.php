@@ -71,13 +71,13 @@
 		<meta name="twitter:description" content="<?=esc_attr($meta_description)?>">
 		<?php if (has_post_thumbnail($post_id)) { ?>
 		<meta name="twitter:image" content="<?=Boilerplate::getImageSrc(get_post_thumbnail_id($post_id), 'classic-xxsml')?>">
-		<?php } ?>
-		<?php wp_head(); ?>
+		<?php
+			}
+			wp_head();
+		?>
 	</head>
 	<body <?php body_class(); ?>>
-		<figure style="display: none;">
-			<?php locate_template(['images/icons.svg'], true, true); ?>
-		</figure>
+		<?php Boilerplate::drawSymbolSprite(); ?>
 		<!-- Skip-to-Content Link -->
 		<a class="skip_link" id="skip_to_content" href="#main_content"><?php _e('Skip to Main Content'); ?></a>
 		<!-- Page Wrapper -->
