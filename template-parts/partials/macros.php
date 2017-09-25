@@ -446,16 +446,17 @@
 			]);
 
 			$classes = [];
-			$classes[] = "$class\_background";
+			$classes[] = $class.'_background';
 			if ($include_js_class) {
 				$classes[] = 'js-background';
 			}
-			$html = '<div class="'.implode($classes, " ").'" data-background-options="'.$options.'"></div>';
+			$html = '<div class="'.implode($classes, " ").'" data-background-options=\''.$options."'></div>";
 
+			return $html;
 		}
 
 		public static function drawImageBackground($class, $attachment_id, $sources, $include_js_class = true, $lazy = true, $lazyEdge = 100) {
-			static::getImageBackground($class, $attachment_id, $sources, $include_js_class, $lazy, $lazyEdge);
+			echo static::getImageBackground($class, $attachment_id, $sources, $include_js_class, $lazy, $lazyEdge);
 		}
 
 		public static function getVideoBackground($class, $source, $poster, $include_js_class = true, $autoplay = false, $loop = false, $mute = false, $embedRatio = 1.777777, $lazy = false, $lazyEdge = 100) {
@@ -471,11 +472,11 @@
 			]);
 
 			$classes = [];
-			$classes[] = "$class\_background";
+			$classes[] = $class.'_background';
 			if ($include_js_class) {
 				$classes[] = 'js-background';
 			}
-			$html = '<div class="'.implode($classes, " ").'" data-background-options="'.$options.'"></div>';
+			$html = '<div class="'.implode($classes, " ").'" data-background-options=\''.$options."'></div>";
 			return $html;
 		}
 
