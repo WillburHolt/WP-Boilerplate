@@ -15,7 +15,13 @@
 	namespace Boilerplate;
 
 	class Boilerplate {
-
+		/**
+		 * Draw the flexible content modules/callouts.
+		 *
+		 * @param array  $callouts Modules get_field() returns.
+		 * @param string $slug     Valid URL address.
+		 * @param int    $post_id  ID from $post->ID.
+		 */
 		public static function drawCallouts($callouts, $slug, $post_id) {
 			if (is_array($callouts) && count($callouts)) {
 				$base = get_template_directory();
@@ -25,67 +31,130 @@
 			}
 		}
 
+		/**
+		 * Draw the logo.
+		 *
+		 * @param string $modifier CSS class suffix.
+		 * @param string $symbol   Symbol slug.
+		 */
 		public static function drawLogo($modifier, $symbol) {
 			include get_template_directory().'/template-parts/partials/logo.php';
 		}
 
+		/**
+		 * Draw the basic navigation.
+		 *
+		 * @param string $menu_name Menu name in admin.
+		 * @param string $class     CSS class.
+		 * @param string $title     Optional. Screen reader title.
+		 * @param string $modifier  Optional. CSS class suffix.
+		 */
 		public static function drawBasicNav($menu_name, $class, $title = false, $modifier = false) {
 			include get_template_directory().'/template-parts/partials/navigation/basic.php';
 		}
 
+		/**
+		 * Draw the main navigation.
+		 *
+		 * @param string $menu_name Optional. Menu name in admin.
+		 * @param string $title     Optional. Screen reader title.
+		 * @param string $modifier  Optional. CSS class suffix.
+		 */
 		public static function drawMainNav($menu_name = 'Main Navigation', $title = 'Main Navigation', $modifier = false) {
 			include get_template_directory().'/template-parts/partials/navigation/main.php';
 		}
 
+		/**
+		 * Draw the sub navigation.
+		 *
+		 * This dynamically displays all children and grandchildren of the current
+		 * page.
+		 *
+		 * @param string $menu_name Optional. Menu name in admin.
+		 */
 		public static function drawSubNav($menu_name = 'Main Navigation') {
 			include get_template_directory().'/template-parts/partials/navigation/sub.php';
 		}
 
+		/**
+		 * Draw the social navigation.
+		 *
+		 * Draws the social icons by turning the menu item title into the symbol's
+		 * slug.
+		 *
+		 * @param string $menu_name Optional. Menu name in admin.
+		 * @param string $title     Optional. Screen reader title.
+		 * @param string $modifier  Optional. CSS class suffix.
+		 */
 		public static function drawSocialNav($menu_name = 'Social Navigation', $title = 'Social Navigation', $modifier = false) {
 			include get_template_directory().'/template-parts/partials/navigation/social.php';
 		}
 
-		public static function drawSearch($placeholder = 'Submit', $button_label = 'Submit', $modifier = false, $theme = false) {
-			static::drawGoogleCSE($placeholder, $button_label, $modifier);
-			static::drawPagination($theme);
+		// Draw the search page.
+		public static function drawSearch() {
+			static::drawGoogleCSE();
+			static::drawPagination();
 		}
 
+		/**
+		 * Draw the search form.
+		 *
+		 * @param string $placeholder  Optional. Placeholder text.
+		 * @param string $button_label Optional. Button label text.
+		 * @param string $modifier     Optional. CSS class suffix.
+		 */
 		public static function drawSearchForm($placeholder = 'Search', $button_label = 'Submit', $modifier = false) {
 			include get_template_directory().'/template-parts/partials/search.php';
 		}
 
-		public static function drawGoogleCSE($theme = false) {
+		// Draw the Google CSE form.
+		public static function drawGoogleCSE() {
 			include get_template_directory().'/template-parts/partials/google-cse.php';
 		}
 
+		// Draw the pagination.
 		public static function drawPagination() {
 			include get_template_directory().'/template-parts/partials/pagination.php';
 		}
 
+		// Draw the breadcrumbs.
 		public static function drawBreadcrumb($modifier = false) {
 			include get_template_directory().'/template-parts/partials/navigation/breadcrumb.php';
 		}
 
+		// Draw the address from the theme customizer.
 		public static function drawAddress() {
 			include get_template_directory().'/template-parts/partials/address.php';
 		}
 
+		/**
+		 * Draw the blog listing.
+		 *
+		 * @global array $post
+		 */
 		public static function drawBlogListing() {
 			global $post;
 			include get_template_directory().'/template-parts/components/full-width/blog-list.php';
 			static::drawPagination();
 		}
 
+		/**
+		 * Draw the archive listing.
+		 *
+		 * @global array $post
+		 */
 		public static function drawArchiveListing() {
 			global $post;
 			include get_template_directory().'/template-parts/components/full-width/archive-list.php';
 			static::drawPagination();
 		}
 
+		// Draw the 404 Not Found page.
 		public static function draw404Page($label, $title, $description = false, $links = false, $background = false, $theme = false) {
 			include get_template_directory().'/template-parts/components/full-width/flexible-callout.php';
 		}
 
+		// Draw the SVG sprite of the symbols.
 		public static function drawSymbolSprite() {
 			echo '<figure style="display: none;">';
 			include get_template_directory().'/images/icons.svg';
@@ -93,11 +162,12 @@
 		}
 
 		/**
-		 * WYSIWYG Content.
+		 * Return WYSIWYG content.
 		 *
 		 * Wrap the WYSIWYG content in the standard typography wrapper.
 		 *
-		 * @param string $content The WYSIWYG content.
+		 * @param string $content WYSIWYG content.
+		 * @return string WYSIWYG markup.
 		 */
 		public static function getWYSIWYG($content) {
 			$html = '
@@ -110,17 +180,25 @@
 			return $html;
 		}
 
+		/**
+		 * Draw WYSIWYG content.
+		 *
+		 * Wrap the WYSIWYG content in the standard typography wrapper.
+		 *
+		 * @see getWYSIWYG()
+		 */
 		public static function drawWYSIWYG($content) {
 			echo static::getWYSIWYG($content);
 		}
 
 		/**
-		 * Draw an HTML table.
+		 * Return an HTML table.
 		 *
 		 * @param string $class   Table class.
 		 * @param array  $headers Table headers.
 		 * @param array  $rows    Table rows. Nested like:
 		 *                        [["Row1", "Row2"], ["Row1", "Row2"]]
+		 * @return string Table markup.
 		 */
 		public static function getTable($class, $headers, $rows) {
 				$html = '
@@ -149,19 +227,25 @@
 			return $html;
 		}
 
+		/**
+		 * Draw an HTML table.
+		 *
+		 * @see getTable()
+		 */
 		public static function drawTable($class, $headers, $rows) {
 			echo static::getTable($class, $headers, $rows);
 		}
 
 		/**
-		 * Draw a button link.
+		 * Return a button link.
 		 *
 		 * @param string $class  HTML class prefix.
 		 * @param string $link   Valid URL address.
 		 * @param string $label  Button label.
 		 * @param string $symbol Optional. Button symbol ID.
+		 * @return string Button markup.
 		 */
-		public static function getButton($class, $link, $label, $symbol = "") {
+		public static function getButton($class, $link, $label, $symbol = '') {
 			$html = '
 			<a class="'.$class.'_link" href="'.$link ? static::getHref($link) : '#'.'">
 				<span class="'.$class.'_link_label">'.$label.'</span>
@@ -175,18 +259,38 @@
 			return $html;
 		}
 
-		public static function drawButton($class, $link, $label, $symbol) {
+		/**
+		 * Draw a button link.
+		 *
+		 * @see getButton()
+		 */
+		public static function drawButton($class, $link, $label, $symbol = '') {
 			echo static::getButton($class, $link, $label, $symbol);
 		}
 
-		public static function getDropdown($class, $id, $label, $choices, $modifier) {
-			$html = '<div class="fs-dropdown-wrapper '.$class.'_dropdown_wrapper'.$modifier ? "$class\_dropdown_wrapper_$modifier".'">' : '';
+		/**
+		 * Return a dropdown.
+		 *
+		 * @param string $class    HTML class prefix.
+		 * @param string $id       ID prefix.
+		 * @param string $label    Form label.
+		 * @param array  $choices {
+		 *     An array of inputs.
+		 *
+		 *     @type string $dropdown_value
+		 *     @type string $dropdown_label
+		 * }
+		 * @param string $modifier Optional. CSS class suffix.
+		 * @return string Dropdown markup.
+		 */
+		public static function getDropdown($class, $id, $label, $choices, $modifier = false) {
+			$html = '<div class="fs-dropdown-wrapper '.$class.'_dropdown_wrapper'.(false !== $modifier) ? "$class\_dropdown_wrapper_$modifier".'">' : '';
 			if ($label) {
 				$html .= '<label class="'.$class.'_label" for="'.$id.'_dropdown">'.$label.'</label>';
 			}
 			$html .= '<select class="js-dropdown '.$class.'_dropdown" id="'.$id.'_dropdown" name="'.$id.'_dropdown">';
-			foreach ($choices as $key => $value) {
-				$html .= '<option value="'.$key.'">'.$value.'</option>';
+			foreach ($choices as $dropdown_value => $dropdown_label) {
+				$html .= '<option value="'.$dropdown_value.'">'.$dropdown_label.'</option>';
 			}
 			$html .= '
 					</select>
@@ -200,13 +304,27 @@
 			return $html;
 		}
 
-		public static function drawDropdown($class, $id, $label, $choices, $modifier) {
+		/**
+		 * Draw a dropdown.
+		 *
+		 * @see getDropdown()
+		 */
+		public static function drawDropdown($class, $id, $label, $choices, $modifier = false) {
 			echo static::getDropdown($class, $id, $label, $choices, $modifier);
 		}
 
-		public static function getInput($type, $id, $label, $class = null) {
+		/**
+		 * Return a input.
+		 *
+		 * @param string $type  HTML class prefix.
+		 * @param string $id    HTML ID.
+		 * @param string $label Form label.
+		 * @param string $class Optional. HTML class prefix.
+		 * @return string Input markup.
+		 */
+		public static function getInput($type, $id, $label, $class = false) {
 			$html = '
-				<div class="'.$class ? sanitize_html_class($class)."_form_element " : ''.'form_element">
+				<div class="'.(false !== $class) ? sanitize_html_class($class)."_form_element " : ''.'form_element">
 					<input type="'.esc_attr($type).'" id="'.esc_attr($id).'" />
 					<label for="'.esc_attr($id).'">'.$label.'</label>
 				</div>
@@ -214,10 +332,23 @@
 			return $html;
 		}
 
-		public static function drawInput($type, $id, $label, $class) {
+		/**
+		 * Draw a input.
+		 *
+		 * @see getInput()
+		 */
+		public static function drawInput($type, $id, $label, $class = false) {
 			echo static::getInput($type, $id, $label, $class);
 		}
 
+		/**
+		 * Return a textarea.
+		 *
+		 * @param  string $type  HTML class prefix.
+		 * @param  string $id    HTML ID.
+		 * @param  string $label Form label.
+		 * @return string Textarea markup.
+		 */
 		public static function getTextarea($type, $id, $label) {
 			$id = esc_attr($id);
 			$html = '
@@ -229,16 +360,33 @@
 			return $html;
 		}
 
+		/**
+		 * Draw a textarea.
+		 *
+		 * @see getTextarea()
+		 */
 		public static function drawTextarea($type, $id, $label) {
 			echo static::getTextarea($type, $id, $label);
 		}
 
+		/**
+		 * Return multiple inputs.
+		 *
+		 * @param string $type  Input type.
+		 * @param array  $items {
+		 *     An array of inputs.
+		 *
+		 *     @type string $input_id
+		 *     @type string $input_value
+		 * }
+		 * @return string Input markup.
+		 */
 		public static function getChoices($type, $items) {
 			$html = '<div class="form_element">';
 			foreach ($items as $id => $value) {
 				$id = esc_attr($id);
 				$html .= '
-					<label for="'.$name.'">
+					<label for="'.$id.'">
 						<input type="'.esc_attr($type).'" name="'.$id.'" id="'.$id.'" value="'.esc_attr($value).'">
 						<span class="'.sanitize_html_class($type).'_label">'.$value.'</span>
 					</label>
@@ -248,12 +396,20 @@
 			return $html;
 		}
 
+		/**
+		 * Draw multiple inputs.
+		 *
+		 * @see getChoices()
+		 */
 		public static function drawChoices($type, $items) {
 			echo static::getChoices($type, $items);
 		}
 
 		/**
-		 * Detects if this is an external link and adds target="_blank" accordingly
+		 * Detects if this is an external link & add target="_blank" accordingly.
+		 *
+		 * @param string $url Hyperlink.
+		 * @return string HTML href markup.
 		 */
 		public static function getHref($url) {
 			$html = 'href="'.esc_url($url).'"';
@@ -263,26 +419,37 @@
 			return $html;
 		}
 
+		/**
+		 * Detects if this is an external link & echo target="_blank" accordingly.
+		 *
+		 * @see getHref()
+		 */
 		public static function drawHref($url) {
 			echo static::getHref($url);
 		}
 
-		public static function getDomain() {
-			return esc_url($_SERVER['HTTP_HOST']);
-		}
-
-		public static function drawDomain() {
-			static::getDomain();
-		}
-
-		public static function getRelatedPostsArray($type, $taxonomy, $tags, $to_return) {
+		/**
+		 * Return related posts.
+		 *
+		 * Get posts based on other posts of the same type with taxonomies and
+		 * tags that are like the current one.
+		 *
+		 * @param string       $type      Post type.
+		 * @param string|array $taxonomy  Accepts the ID of a taxonomy or an array
+		 *                                of multiple taxonomies.
+		 * @param string|array $tags      Accepts the ID of a tags or an array of
+		 *                                multiple tags.
+		 * @param int          $to_return Number of related posts to return.
+		 * @return array Input markup.
+		 */
+		public static function getRelatedPostsArray($type, $taxonomies, $tags, $to_return) {
 			$posts = get_posts([
 				'posts_per_page' => -1,
 				'post_type' => $type,
 				'post_status' => 'publish',
 				'tax_query' => [
 					[
-						'taxonomy' => $taxonomy,
+						'taxonomy' => $taxonomies,
 						'field' => 'term_id',
 						'terms' => $tags
 					]
@@ -290,7 +457,7 @@
 			]);
 			$relevance_array = [];
 			foreach ($posts as $post) {
-				$post_tags = wp_get_post_terms($post->ID, $taxonomy);
+				$post_tags = wp_get_post_terms($post->ID, $taxonomies);
 				$relevance = 0;
 				foreach ($post_tags as $tag) {
 					if (in_array($tag->term_id, $tags)) {
@@ -303,6 +470,14 @@
 			return array_slice($posts, 0, $to_return);
 		}
 
+		/**
+		 * Return a parsed menu.
+		 *
+		 * @param bool|array $menu   Array of menu items, otherwise false.
+		 * @param int        $levels Menu depth.
+		 * @param int        $parent Parent page ID to use as a base for the menu.
+		 * @return array Menu array.
+		 */
 		public static function getParsedMenuArray($menu, $levels = 1, $parent = 0) {
 			if (is_array($menu)) {
 				$parsed_menu = [];
@@ -318,32 +493,41 @@
 			}
 		}
 
-		public static function getPaginationArray($current_page, $pages, $max_to_show = 10) {
-			if (0 == $pages) {
-				$pages = 1;
+		/**
+		 * Return a parsed menu.
+		 *
+		 * @param int $current_page    Array of menu items, otherwise false.
+		 * @param int $total_num_pages Total number of pages.
+		 * @param int $max_to_show     Maximum number of page numbers to paginate
+		 *                             at one time.
+		 * @return array Pagination array.
+		 */
+		public static function getPaginationArray($current_page, $total_num_pages, $max_to_show = 9) {
+			if (0 === $total_num_pages) {
+				$total_num_pages = 1;
 			}
 
-			if (10 != $max_to_show && 0 == $max_to_show % 2) {
+			if (10 !== $max_to_show && 0 === $max_to_show % 2) {
 				$max_to_show++;
 			}
 
 			// Figure out what previous and next buttons should do.
-			if (1 == $current_page) {
+			if (1 === $current_page) {
 				$prev_page = 1;
 			} else {
 				$prev_page = $current_page - 1;
 			}
 
-			if ($current_page == $pages) {
-				$next_page = $pages;
+			if ($total_num_pages === $current_page) {
+				$next_page = $total_num_pages;
 			} else {
 				$next_page = $current_page + 1;
 			}
 
 			// If we have less than the max pages, just draw them all.
-			if ($pages <= $max_to_show) {
+			if ($total_num_pages <= $max_to_show) {
 				$start_page = 1;
-				$end_page = $pages;
+				$end_page = $total_num_pages;
 			// Otherwise we need to figure out where we are...
 			} else {
 				$ceil_point = ceil($max_to_show / 2);
@@ -352,9 +536,9 @@
 				if ($current_page <= $ceil_point) {
 					$start_page = 1;
 					$end_page = $max_to_show;
-				} else if ($current_page >= ($pages - $floor_point)) {
-					$start_page = $pages - $max_to_show - 1 + $floor_point;
-					$end_page = $pages;
+				} elseif ($current_page >= ($total_num_pages - $floor_point)) {
+					$start_page = $total_num_pages - $max_to_show - 1 + $floor_point;
+					$end_page = $total_num_pages;
 				} else {
 					$start_page = $current_page - $floor_point;
 					$end_page = $current_page + $floor_point;
@@ -363,7 +547,18 @@
 			return range($start_page, $end_page);
 		}
 
-		public static function getImage($attachment_id, $class, $size = 'square_thumb', $icon = false, $attr = '') {
+		/**
+		 * Return image markup.
+		 *
+		 * @param int          $attachment_id The attachment ID of the image.
+		 * @param string       $class         Class prefix.
+		 * @param string|array $size          Image size identifier(s).
+		 * @param bool         $icon          Whether the image should be treated
+		 *                                    as an icon.
+		 * @param string       $attr          HTML attributes.
+		 * @return string Image markup.
+		 */
+		public static function getImage($attachment_id, $class, $size = 'square_thumb', $icon = false, $attr = []) {
 			$image = wp_get_attachment_image_src($attachment_id, $size, $icon);
 			if ($image) {
 				list($src, $width, $height) = $image;
@@ -390,17 +585,35 @@
 			}
 		}
 
+		/**
+		 * Draw image markup.
+		 *
+		 * @see getImage()
+		 */
 		public static function drawImage($attachment_id, $class, $size = 'square_thumb', $icon = false, $attr = '') {
 			echo static::getImage($attachment_id, $class, $size, $icon, $attr);
 		}
 
+		/**
+		 * Return picture markup.
+		 *
+		 * @param int          $attachment_id The attachment ID of the image.
+		 * @param string       $class         Optional. Class prefix.
+		 * @param array        $sources {
+		 *     Optional. Accepts ID of a taxonomy or array of multiple taxonomies.
+		 *
+		 *     @type string $image_size Image size (e.g. 1220px).
+		 *     @type string $image_size_id Image size identifier.
+		 * }
+		 * @param string|array $fallback      Optional. Image size identifier(s).
+		 * @return string Picture markup.
+		 */
 		public static function getPicture($image, $class = 'media', $sources = ['1220px' => 'wide-med', '500px' => 'wide-sml'], $fallback = null) {
-			$html = '';
 			if (!$fallback) {
 				$fallback = array_pop($sources);
 			}
 
-			$html .= '
+			$html = '
 			<picture class="'.$class.'_picture">
 				<!--[if IE 9]><video style="display: none;"><![endif]-->
 			';
@@ -413,26 +626,60 @@
 			return $html;
 		}
 
+		/**
+		 * Draw picture markup.
+		 *
+		 * @see getPicture()
+		 */
 		public static function drawPicture($image, $class = 'media', $sources = ['1220px' => 'wide-med', '500px' => 'wide-sml'], $fallback = null) {
 			echo static::getPicture($image, $class, $sources, $fallback);
 		}
 
+		/**
+		 * Return image URL.
+		 *
+		 * @param array|int $image The attachment ID of the image or image array
+		 *                         object.
+		 * @param string    $name  Image size identifier.
+		 * @return string Image URL.
+		 */
 		public static function getImageSrc($image, $name) {
 			if (is_array($image) && isset($image['sizes']) && isset($image['sizes'][$name])) {
 				$img = [$image['sizes'][$name]];
 			} else {
 				$img = wp_get_attachment_image_src($image, $name);
 			}
-			$url = $img ? $img[0] : "";
+			$url = $img ? $img[0] : '';
 			return $url;
 		}
 
+		/**
+		 * Return alternate image text.
+		 *
+		 * @param int $attachment_id The attachment ID of the image.
+		 * @return string Alternate image text.
+		 */
 		public static function getImageAlt($attachment_id) {
-			$alt_text = trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true)));
-			return $alt_text;
+			return trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true)));
 		}
 
-		public static function getImageBackground($class, $attachment_id, $sources, $include_js_class = true, $lazy = true, $lazyEdge = 100) {
+		/**
+		 * Return background image markup.
+		 *
+		 * @param string       $class         Class prefix.
+		 * @param int          $attachment_id The attachment ID of the image.
+		 * @param array        $sources {
+		 *     Accepts the ID of a taxonomy or an array of multiple taxonomies.
+		 *
+		 *     @type string $image_size Image size (e.g. 1220px).
+		 *     @type string $image_size_id Image size identifier.
+		 * }
+		 * @param bool $include_js_class      Optional. Add js-background class.
+		 * @param bool $lazy                  Optional. Lazy load with scroll.
+		 * @param int  $lazy_edge             Optional. Lazy edge.
+		 * @return string Image background markup.
+		 */
+		public static function getImageBackground($class, $attachment_id, $sources, $include_js_class = true, $lazy = true, $lazy_edge = 100) {
 			$source_array = [];
 
 			foreach ($sources as $breakpoint => $prefix) {
@@ -442,7 +689,7 @@
 			$options = json_encode([
 				'source' => $source_array,
 				'lazy' => $lazy ? 'true' : 'false',
-				'lazyEdge' => (string) $lazyEdge
+				'lazyEdge' => (string) $lazy_edge
 			]);
 
 			$classes = [];
@@ -455,18 +702,39 @@
 			return $html;
 		}
 
-		public static function drawImageBackground($class, $attachment_id, $sources, $include_js_class = true, $lazy = true, $lazyEdge = 100) {
-			echo static::getImageBackground($class, $attachment_id, $sources, $include_js_class, $lazy, $lazyEdge);
+		/**
+		 * Draw background image markup.
+		 *
+		 * @see getImageBackground()
+		 */
+		public static function drawImageBackground($class, $attachment_id, $sources, $include_js_class = true, $lazy = true, $lazy_edge = 100) {
+			echo static::getImageBackground($class, $attachment_id, $sources, $include_js_class, $lazy, $lazy_edge);
 		}
 
-		public static function getVideoBackground($class, $source, $poster, $include_js_class = true, $autoplay = false, $loop = false, $mute = false, $embedRatio = 1.777777, $lazy = false, $lazyEdge = 100) {
+		/**
+		 * Return background image markup.
+		 *
+		 * @param string       $class         Class prefix.
+		 * @param int          $attachment_id The attachment ID of the image.
+		 * @param array        $sources {
+		 *     Accepts the ID of a taxonomy or an array of multiple taxonomies.
+		 *
+		 *     @type string $image_size Image size (e.g. 1220px).
+		 *     @type string $image_size_id Image size identifier.
+		 * }
+		 * @param bool $include_js_class      Optional. Add js-background class.
+		 * @param bool $lazy                  Optional. Lazy load with scroll.
+		 * @param int  $lazy_edge             Optional. Lazy edge.
+		 * @return string Image background markup.
+		 */
+		public static function getVideoBackground($class, $source, $poster, $include_js_class = true, $autoplay = false, $loop = false, $mute = false, $embedRatio = 1.777777, $lazy = false, $lazy_edge = 100) {
 
 			$options = json_encode([
 				'source' => ['poster' => $poster, 'video' => esc_attr($source)],
 				'autoPlay' => $autoplay ? 'true' : 'false',
 				'embedRatio' => (string) $embedRatio,
 				'lazy' => $lazy ? 'true' : 'false',
-				'lazyEdge' => (string) $lazyEdge,
+				'lazyEdge' => (string) $lazy_edge,
 				'loop' => $loop ? 'true' : 'false',
 				'mute' => $mute ? 'true' : 'false'
 			]);
@@ -480,11 +748,22 @@
 			return $html;
 		}
 
-		public static function drawVideoBackground($class, $source, $poster, $include_js_class = true, $autoplay = false, $loop = false, $mute = false, $embedRatio = 1.777777, $lazy = false, $lazyEdge = 100) {
-			echo static::getVideoBackground($class, $source, $poster, $include_js_class, $autoplay, $loop, $mute, $embedRatio, $lazy, $lazyEdge);
+		/**
+		 * Draw background image markup.
+		 *
+		 * @see getImageBackground()
+		 */
+		public static function drawVideoBackground($class, $source, $poster, $include_js_class = true, $autoplay = false, $loop = false, $mute = false, $embedRatio = 1.777777, $lazy = false, $lazy_edge = 100) {
+			echo static::getVideoBackground($class, $source, $poster, $include_js_class, $autoplay, $loop, $mute, $embedRatio, $lazy, $lazy_edge);
 		}
 
-		// Define macro function for using our SVG symbols.
+		/**
+		 * Return SVG symbol markup.
+		 *
+		 * @param string $id       Symbol identifier.
+		 * @param string $modifier Optional. Class suffix.
+		 * @return string SVG symbol markup.
+		 */
 		public static function getSymbol($id, $modifier = '') {
 			$classes = [];
 			$classes[] = "symbol symbol_$id";
@@ -498,10 +777,27 @@
 			';
 			return $html;
 		}
+
+		/**
+		 * Draw SVG symbol markup.
+		 *
+		 * @see getSymbol()
+		 */
 		public static function drawSymbol($id, $modifier = '') {
 			echo static::getSymbol($id, $modifier);
 		}
 
+		/**
+		 * Return a hyperlink.
+		 *
+		 * @param string $url                  Hyperlink URL.
+		 * @param string $label                Hyperlink text.
+		 * @param string $class                Class suffix.
+		 * @param string $inner_wrapper_before Optional. Inside wrapper beginning.
+		 * @param string $inner_wrapper_after  Optional. Inside wrapper end.
+		 * @param array  $attr                 Optional. HTML attributes.
+		 * @return string Hyperlink markup.
+		 */
 		public static function getLink($url, $label, $class, $inner_wrapper_before = '', $inner_wrapper_after = '', $attr = []) {
 			$html = "<a";
 			$class = $class;
@@ -521,6 +817,11 @@
 			return $html;
 		}
 
+		/**
+		 * Draw a hyperlink.
+		 *
+		 * @see getLink()
+		 */
 		public static function drawLink($url, $label, $class, $inner_wrapper_before = '', $inner_wrapper_after = '', $attr = []) {
 			echo static::getLink($url, $label, $class, $inner_wrapper_before, $inner_wrapper_after, $attr);
 		}
