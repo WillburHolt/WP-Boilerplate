@@ -21,6 +21,7 @@
 		the_post();
 		$feature_callouts = get_field('feature');
 		$full_width_callouts = get_field('full_width');
+		echo get_site_url();
 ?>
 <!-- Page -->
 <div class="page">
