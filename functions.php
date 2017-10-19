@@ -52,14 +52,16 @@
 	function init() {
 		add_theme_support('post-thumbnails');
 		add_theme_support('html5', [
-			'comment-list',
-			'comment-form',
 			'search-form',
 			'gallery',
 			'caption'
 		]);
 		add_theme_support('custom-logo');
 		add_theme_support('title-tag');
+
+		// Remove comments support.
+		remove_post_type_support('post', 'comments');
+		remove_post_type_support('page', 'comments');
 
 		/**
 		 * Add our image sizes.
@@ -183,6 +185,12 @@
 		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 		 */
 		function customize_register($wp_customize) {
+			$wp_customize->add_section('site_alert_section', [
+				'title' => __('Site-Wide Alert'),
+				'description' => __('This is where you can setup a site-wide alert.'),
+				'priority' => 30,
+				'capability' => 'edit_theme_options'
+			]);
 			$wp_customize->add_section('index_options_section', [
 				'title' => __('Index/Archive Settings'),
 				'description' => __('This is where the settings are stored for the indexes and archives.'),
@@ -204,7 +212,60 @@
 			$wp_customize->add_setting('zip');
 			$wp_customize->add_setting('phone');
 			$wp_customize->add_setting('cse_key');
+			$wp_customize->add_setting('alert_status', [
+				'capability' => 'edit_theme_options',
+				'sanitize_callback' => 'sanitize_checkbox'
+			]);
+			$wp_customize->add_setting('alert_title');
+			$wp_customize->add_setting('alert_description');
+			$wp_customize->add_setting('alert_link_url');
+			$wp_customize->add_setting('alert_date');
+			$wp_customize->add_setting('alert_time');
 
+			$wp_customize->add_control('alert_status', [
+				'type' => 'checkbox',
+				'section' => 'site_alert_section', // Add a default or your own section
+				'label' => __('Alert Status'),
+				'description' => __('This allows you turn the alert on and off.'),
+			]);
+			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_title', [
+				'label'    => __('Title'),
+				'section'  => 'site_alert_section',
+				'settings' => 'alert_title',
+				'type'     => 'text',
+				'priority' => 60
+			]));
+			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_description', [
+				'label'    => __('Description'),
+				'section'  => 'site_alert_section',
+				'settings' => 'alert_description',
+				'type'     => 'text',
+				'priority' => 60
+			]));
+			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_link_url', [
+				'label'    => __('Link URL'),
+				'section'  => 'site_alert_section',
+				'settings' => 'alert_link_url',
+				'type'     => 'text',
+				'priority' => 60
+			]));
+			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_date', [
+				'label'    => __('Date/Time'),
+				'section'  => 'site_alert_section',
+				'settings' => 'alert_date',
+				'type'     => 'date',
+				'priority' => 60,
+				'input_attrs' => [
+					'placeholder' => __( 'mm/dd/yyyy' ),
+				]
+			]));
+			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_time', [
+				'label'    => __('Date/Time'),
+				'section'  => 'site_alert_section',
+				'settings' => 'alert_time',
+				'type'     => 'time',
+				'priority' => 60
+			]));
 			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'name', [
 				'label'    => __('Name'),
 				'section'  => 'title_tagline',
@@ -255,6 +316,27 @@
 			]));
 		}
 		add_action('customize_register', 'Boilerplate\customize_register');
+
+		function sanitize_checkbox($checked) {
+			// Boolean check.
+			return ((isset($checked) && true == $checked) ? true : false);
+		}
+
+		// Remove WP version from styles and scripts.
+		function remove_ver_css_js($src) {
+			if (strpos($src, 'ver=')) {
+				$src = remove_query_arg('ver', $src);
+			}
+			return $src;
+		}
+		add_filter('style_loader_src', 'Boilerplate\remove_ver_css_js', 9999);
+		add_filter('script_loader_src', 'Boilerplate\remove_ver_css_js', 9999);
+
+		// Remove WP version from the head and RSS feeds.
+		add_filter('the_generator', function() { return ''; });
+
+		// Disable XML-RPC by default.
+		add_filter('xmlrpc_enabled', '__return_false');
 	}
 	add_action('init', 'Boilerplate\init', 0);
 
@@ -302,4 +384,37 @@
 		}
 	}
 	add_action('wp_login', 'Boilerplate\show_post_excerpt', 10, 2);
+
+	function admin_menu() {
+		// Remove comments support.
+		remove_menu_page('edit-comments.php');
+	}
+	add_action('admin_menu', 'Boilerplate\admin_menu');
+
+	// Removes from admin bar
+	function before_admin_bar_render() {
+		global $wp_admin_bar;
+
+		// Remove comments support.
+		$wp_admin_bar->remove_menu('comments');
+	}
+	add_action('wp_before_admin_bar_render', 'Boilerplate\before_admin_bar_render');
+
+	/**
+	 * Remove sizes/srcset from WP-generated images.
+	 *
+	 * @link https://wordpress.stackexchange.com/questions/211375
+	 */
+	add_filter('wp_get_attachment_image_attributes', function($attr) {
+		if (isset($attr['sizes'])) {
+			unset($attr['sizes']);
+		}
+		if (isset($attr['srcset'])) {
+			unset($attr['srcset']);
+		}
+		return $attr;
+	}, PHP_INT_MAX);
+	add_filter('wp_calculate_image_sizes', '__return_empty_array',  PHP_INT_MAX);
+	add_filter('wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX);
+	remove_filter('the_content', 'wp_make_content_images_responsive');
 ?>
