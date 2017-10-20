@@ -141,7 +141,7 @@
 		 *
 		 * @since 1.0.0
 		 */
-		public static function drawBreadcrumb($modifier = false) {
+		public static function drawBreadcrumb($modifier = false, $post = false) {
 			include get_template_directory().'/template-parts/partials/navigation/breadcrumb.php';
 		}
 
@@ -246,7 +246,7 @@
 					<thead>
 						<tr>';
 						foreach ($headers as $header) {
-							$html .= '<th>'.$header.'</td>';
+							$html .= "<th>$header</td>";
 						}
 						$html .= '
 						</tr>
@@ -256,7 +256,7 @@
 				for ($i = 0; $i < count($rows); $i++) {
 					$html .= '<tr>';
 					foreach ($row[$i] as $item) {
-						$html .= '<td>'.$item.'</td>';
+						$html .= "<td>$item</td>";
 					}
 					$html .= '</tr>';
 				}
@@ -868,7 +868,7 @@
 		 * @since 1.0.0
 		 */
 		public static function getLink($url, $label, $class, $inner_wrapper_before = '', $inner_wrapper_after = '', $attr = []) {
-			$html = "<a";
+			$html = '<a';
 			$class = $class;
 			if (is_array($class)) {
 				$attr['class'] = implode(' ', array_map('sanitize_html_class', $class));
