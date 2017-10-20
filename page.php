@@ -45,7 +45,7 @@
 				<main class="main_content" id="main_content" itemprop="mainContentOfPage">
 					<div class="page_header">
 						<?php
-							Boilerplate::drawBreadcrumb();
+							Boilerplate::drawBreadcrumb(false, $post);
 							if (get_the_title() && '' !== get_the_title()) {
 						?>
 						<div class="typography">
