@@ -126,13 +126,12 @@
 		add_image_size('portrait-classic-xlrg',  960, 1440, true);
 
 		// Register navigation menus.
-		$nav_menus = [
+		register_nav_menus([
 			'main-navigation'      => __('Main Navigation'),
 			'secondary-navigation' => __('Secondary Navigation'),
 			'social-navigation'    => __('Social Navigation'),
 			'footer-navigation'    => __('Footer Navigation')
-		];
-		register_nav_menus($nav_menus);
+		]);
 
 		function body_classes($classes) {
 			$header_background = get_field('header_background', get_the_ID());
@@ -361,9 +360,10 @@
 
 	// Enqueue styles and scripts.
 	function enqueue_scripts() {
-		wp_enqueue_style('site', get_template_directory_uri().'/css/site.css');
-		wp_enqueue_script('modernizr', get_template_directory_uri().'/js/modernizr.js');
-		wp_enqueue_script('site', get_template_directory_uri().'/js/site.js', [], false, true);
+		$template_directory_uri = get_template_directory_uri();
+		wp_enqueue_style('site', $template_directory_uri.'/css/site.css');
+		wp_enqueue_script('modernizr', $template_directory_uri.'/js/modernizr.js');
+		wp_enqueue_script('site', $template_directory_uri.'/js/site.js', [], false, true);
 	}
 	add_action('wp_enqueue_scripts', 'Boilerplate\enqueue_scripts');
 
