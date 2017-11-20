@@ -28,7 +28,7 @@
 		exit;
 	}
 
-	// Include our macros and customizer setup.
+	// Include our macros.
 	require_once get_parent_theme_file_path('template-parts/partials/macros.php');
 
 	if (function_exists('acf_add_options_sub_page')) {
@@ -39,10 +39,39 @@
 			'capability'	=> 'edit_pages',
 			'parent_slug' => 'edit.php'
 		]);
-
+/*
 		acf_add_options_sub_page([
-			'page_title' 	=> '404 Error Page',
-			'menu_title'	=> '404 Error Page',
+			'page_title' 	=> 'Global Settings',
+			'menu_title'	=> 'Global Settings',
+			'menu_slug' 	=> 'global-settings',
+			'capability'	=> 'edit_theme_options',
+			'parent_slug' => 'themes.php'
+		]);
+*/
+		acf_add_options_sub_page([
+			'page_title' 	=> 'Site Alert',
+			'menu_title'	=> 'Site Alert',
+			'menu_slug' 	=> 'site-wide-alert-options',
+			'capability'	=> 'edit_theme_options',
+			'parent_slug' => 'themes.php'
+		]);
+		acf_add_options_sub_page([
+			'page_title' 	=> 'Footer',
+			'menu_title'	=> 'Footer',
+			'menu_slug' 	=> 'footer-options',
+			'capability'	=> 'edit_theme_options',
+			'parent_slug' => 'themes.php'
+		]);
+		acf_add_options_sub_page([
+			'page_title' 	=> 'Search Page',
+			'menu_title'	=> 'Search Page',
+			'menu_slug' 	=> 'search-page-options',
+			'capability'	=> 'edit_theme_options',
+			'parent_slug' => 'themes.php'
+		]);
+		acf_add_options_sub_page([
+			'page_title' 	=> '404 Page',
+			'menu_title'	=> '404 Page',
 			'menu_slug' 	=> '404-page-options',
 			'capability'	=> 'edit_theme_options',
 			'parent_slug' => 'themes.php'
@@ -127,10 +156,10 @@
 
 		// Register navigation menus.
 		register_nav_menus([
-			'main-navigation'      => __('Main Navigation'),
-			'secondary-navigation' => __('Secondary Navigation'),
-			'social-navigation'    => __('Social Navigation'),
-			'footer-navigation'    => __('Footer Navigation')
+			'main-navigation'      => 'Main Navigation',
+			'secondary-navigation' => 'Secondary Navigation',
+			'social-navigation'    => 'Social Navigation',
+			'footer-navigation'    => 'Footer Navigation'
 		]);
 
 		function body_classes($classes) {
@@ -160,13 +189,13 @@
 
 			// Remove H1 from WYSIWYG editors.
 			$block_formats = [
-				__('Paragraph') => 'p',
-				__('Heading 2') => 'h2',
-				__('Heading 3') => 'h3',
-				__('Heading 4') => 'h4',
-				__('Heading 5') => 'h5',
-				__('Heading 6') => 'h6',
-				__('Preformatted') => 'pre'
+				'Paragraph' => 'p',
+				'Heading 2' => 'h2',
+				'Heading 3' => 'h3',
+				'Heading 4' => 'h4',
+				'Heading 5' => 'h5',
+				'Heading 6' => 'h6',
+				'Preformatted' => 'pre'
 			];
 			$block_formats_settings = '';
 			foreach ($block_formats as $k => $v) {
@@ -177,149 +206,6 @@
 			return $settings;
 		}
 		add_filter('tiny_mce_before_init', 'Boilerplate\tiny_mce_formats');
-
-		/**
-		 * Add postMessage support for site title and description for the Theme Customizer.
-		 *
-		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
-		 */
-		function customize_register($wp_customize) {
-			$wp_customize->add_section('site_alert_section', [
-				'title' => __('Site-Wide Alert'),
-				'description' => __('This is where you can setup a site-wide alert.'),
-				'priority' => 30,
-				'capability' => 'edit_theme_options'
-			]);
-			$wp_customize->add_section('index_options_section', [
-				'title' => __('Index/Archive Settings'),
-				'description' => __('This is where the settings are stored for the indexes and archives.'),
-				'priority' => 30,
-				'capability' => 'edit_theme_options'
-			]);
-			$wp_customize->add_section('search_options_section', [
-				'title' => __('Search Settings'),
-				'description' => __('This is where the settings are stored for the search results page.'),
-				'priority' => 30,
-				'capability' => 'edit_theme_options'
-			]);
-
-			$wp_customize->add_setting('logo');
-			$wp_customize->add_setting('name');
-			$wp_customize->add_setting('street');
-			$wp_customize->add_setting('city');
-			$wp_customize->add_setting('state');
-			$wp_customize->add_setting('zip');
-			$wp_customize->add_setting('phone');
-			$wp_customize->add_setting('cse_key');
-			$wp_customize->add_setting('alert_status', [
-				'capability' => 'edit_theme_options',
-				'sanitize_callback' => 'sanitize_checkbox'
-			]);
-			$wp_customize->add_setting('alert_title');
-			$wp_customize->add_setting('alert_description');
-			$wp_customize->add_setting('alert_link_url');
-			$wp_customize->add_setting('alert_date');
-			$wp_customize->add_setting('alert_time');
-
-			$wp_customize->add_control('alert_status', [
-				'type' => 'checkbox',
-				'section' => 'site_alert_section', // Add a default or your own section
-				'label' => __('Alert Status'),
-				'description' => __('This allows you turn the alert on and off.'),
-			]);
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_title', [
-				'label'    => __('Title'),
-				'section'  => 'site_alert_section',
-				'settings' => 'alert_title',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_description', [
-				'label'    => __('Description'),
-				'section'  => 'site_alert_section',
-				'settings' => 'alert_description',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_link_url', [
-				'label'    => __('Link URL'),
-				'section'  => 'site_alert_section',
-				'settings' => 'alert_link_url',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_date', [
-				'label'    => __('Date/Time'),
-				'section'  => 'site_alert_section',
-				'settings' => 'alert_date',
-				'type'     => 'date',
-				'priority' => 60,
-				'input_attrs' => [
-					'placeholder' => __( 'mm/dd/yyyy' ),
-				]
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'alert_time', [
-				'label'    => __('Date/Time'),
-				'section'  => 'site_alert_section',
-				'settings' => 'alert_time',
-				'type'     => 'time',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'name', [
-				'label'    => __('Name'),
-				'section'  => 'title_tagline',
-				'settings' => 'name',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'street', [
-				'label'    => __('Street'),
-				'section'  => 'title_tagline',
-				'settings' => 'street',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'city', [
-				'label'    => __('City'),
-				'section'  => 'title_tagline',
-				'settings' => 'city',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'state', [
-				'label'    => __('State'),
-				'section'  => 'title_tagline',
-				'settings' => 'state',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'zip', [
-				'label'    => __('Zip'),
-				'section'  => 'title_tagline',
-				'settings' => 'zip',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'phone', [
-				'label'    => __('Phone'),
-				'section'  => 'title_tagline',
-				'settings' => 'phone',
-				'type'     => 'text',
-				'priority' => 60
-			]));
-			$wp_customize->add_control(new \WP_Customize_Control($wp_customize, 'cse_key', [
-				'label'    => __('Google CSE Key'),
-				'section'  => 'search_options_section',
-				'settings' => 'cse_key',
-				'type'     => 'text'
-			]));
-		}
-		add_action('customize_register', 'Boilerplate\customize_register');
-
-		function sanitize_checkbox($checked) {
-			// Boolean check.
-			return ((isset($checked) && true == $checked) ? true : false);
-		}
 
 		// Remove WP version from styles and scripts.
 		function remove_ver_css_js($src) {
@@ -336,6 +222,18 @@
 
 		// Disable XML-RPC by default.
 		add_filter('xmlrpc_enabled', '__return_false');
+
+		// Rename Featured Image to Social Sharing Image.
+		function replace_featured_image_box() {
+			// Remove post excerpt since we use an ACF field.
+			remove_meta_box('postexcerpt' , 'post' , 'normal');
+
+			// Re-register Featured Image as Social Sharing Image.
+			remove_meta_box('postimagediv', 'page', 'side');
+			add_meta_box('postimagediv', 'Social Sharing Image', 'post_thumbnail_meta_box', 'page', 'side', 'low');
+			add_meta_box('postimagediv', 'Social Sharing Image', 'post_thumbnail_meta_box', 'post', 'side', 'low');
+		}
+		add_action('do_meta_boxes', 'Boilerplate\replace_featured_image_box');
 	}
 	add_action('init', 'Boilerplate\init', 0);
 
@@ -367,27 +265,21 @@
 	}
 	add_action('wp_enqueue_scripts', 'Boilerplate\enqueue_scripts');
 
-	/**
-	 * Display Post Excerpt by default.
-	 *
-	 * This will update user's meta after successful login by removing
-	 * postexcerpt name from the array of unchecked boxes names.
-	 *
-	 * @link https://wordpress.stackexchange.com/q/275977/83781
-	 */
-	function show_post_excerpt($user_login, $user) {
-		$unchecked = get_user_meta($user->ID, 'metaboxhidden_post', true);
-		$key = array_search('postexcerpt', $unchecked);
-		if (false !== $key) {
-			array_splice($unchecked, $key, 1);
-			update_user_meta($user->ID, 'metaboxhidden_post', $unchecked);
-		}
-	}
-	add_action('wp_login', 'Boilerplate\show_post_excerpt', 10, 2);
-
 	function admin_menu() {
 		// Remove comments support.
 		remove_menu_page('edit-comments.php');
+
+		/**
+		 *  Remove Customizer support.
+		 *
+		 * @link https://stackoverflow.com/a/26873392
+		 */
+		$customize_url_arr = [];
+		$customize_url = add_query_arg('return', urlencode(wp_unslash($_SERVER['REQUEST_URI'])), 'customize.php');
+		$customize_url_arr[] = $customize_url;
+		foreach ($customize_url_arr as $customize_url) {
+			remove_submenu_page('themes.php', $customize_url);
+		}
 	}
 	add_action('admin_menu', 'Boilerplate\admin_menu');
 
@@ -395,10 +287,16 @@
 	function before_admin_bar_render() {
 		global $wp_admin_bar;
 
-		// Remove comments support.
+		// Remove comments and customizer support.
 		$wp_admin_bar->remove_menu('comments');
+		$wp_admin_bar->remove_menu('customize');
 	}
 	add_action('wp_before_admin_bar_render', 'Boilerplate\before_admin_bar_render');
+
+	function remove_customizer_options($wp_customize) {
+		$wp_customize->remove_section('themes');
+	}
+	add_action('customize_register', 'Boilerplate\remove_customizer_options', 30);
 
 	/**
 	 * Remove sizes/srcset from WP-generated images.
