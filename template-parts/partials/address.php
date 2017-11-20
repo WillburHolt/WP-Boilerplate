@@ -12,13 +12,13 @@
 	// Everything is stored in our namespace.
 	namespace Boilerplate;
 
-	// Define theme mods from the theme's customise options.
-	$name = get_theme_mod('name');
-	$street = get_theme_mod('street');
-	$city = get_theme_mod('city');
-	$state = get_theme_mod('state');
-	$zip = get_theme_mod('zip');
-	$phone = get_theme_mod('phone');
+	// Define ACF fields from Footer options page.
+	$name = get_field('footer_name', 'option');
+	$street = get_field('footer_street', 'option');
+	$city = get_field('footer_city', 'option');
+	$state = get_field('footer_state', 'option');
+	$zip = get_field('footer_zip', 'option');
+	$phone = get_field('footer_phone', 'option');
 ?>
 <div class="footer_address" itemscope itemtype="http://schema.org/PostalAddress">
 	<?php if (!empty($name)) { ?>

@@ -13,8 +13,8 @@
 	// Everything is stored in our namespace.
 	namespace Boilerplate;
 
-	// TODO: Setup the key that the client provides from their Google account.
-	$key = get_theme_mod('cse_key');
+	// Define ACF fields from Search Page options page.
+	$key = get_field('search_page_cse_key', 'option');
 ?>
 <div class="site_search_results<?php if (false !== $theme) echo " theme_$theme"; ?>">
 	<div class="fs-row">
@@ -33,7 +33,7 @@
 			<div class="gcse-search"></div>
 			<noscript>
 				<div class="typography">
-					<p><?php _e('The site search requires a JavaScript enabled browser. You can also search the site using <a href="//www.google.com/#q=site:'.Boilerplate::getDomain().'">Google</a>.'); ?></p>
+					<p>The site search requires a JavaScript enabled browser. You can also search the site using <a href="//www.google.com/#q=site:<?=esc_html($_SERVER['HTTP_HOST'])?>">Google</a></p>
 				</div>
 			</noscript>
 		</div>
