@@ -17,7 +17,7 @@
 
 	$post_ancestors = get_ancestors();
 ?>
-<div class="breadcrumb_nav<?php if ($modifier) echo " breadcrumb_nav_$modifier"; ?>">
+<div class="breadcrumb_nav<?php if (!empty($modifier)) echo " breadcrumb_nav_$modifier"; ?>">
 	<div class="breadcrumb_list" itemscope itemtype="http://schema.org/BreadcrumbList">
 		<div class="breadcrumb_item" itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
 			<a class="breadcrumb_link" href="<?=get_site_url()?>" itemprop="item">

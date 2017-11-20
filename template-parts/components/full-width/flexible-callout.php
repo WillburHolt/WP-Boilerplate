@@ -20,7 +20,7 @@
 	$description = isset($callout['description']) ? $callout['description'] : $description;
 	$links = isset($callout['links']) ? $callout['links'] : $links;
 ?>
-<section class="flex_callout<?php if ($theme) echo " theme_$theme"; ?>">
+<section class="flex_callout<?php if (!empty($theme)) echo " theme_$theme"; ?>">
 	<?php
 		if ($background) {
 			Boilerplate::drawImageBackground('flex_callout', $background, [

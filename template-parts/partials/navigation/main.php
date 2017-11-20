@@ -19,8 +19,8 @@
 
 	if (!empty($navigation)) {
 ?>
-<nav class="js-main-nav main_nav<?php if ($modifier) echo " main_nav_$modifier"; ?>" aria-label="<?=$title?>" itemscope itemtype="http://schema.org/SiteNavigationElement">
-	<?php if ($title) { ?>
+<nav class="js-main-nav main_nav<?php if (!empty($modifier)) echo " main_nav_$modifier"; ?>" aria-label="<?=$title?>" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<?php if (!empty($title)) { ?>
 	<div class="main_nav_header">
 		<h2 class="main_nav_title"><?=esc_html($title)?></h2>
 	</div>

@@ -22,9 +22,9 @@
 
 	if (!empty($navigation)) {
 ?>
-<div class="social_nav<?php if ($modifier) echo " social_nav_$modifier"; ?>" itemscope itemtype="http://schema.org/Organization">
+<div class="social_nav<?php if (!empty($modifier)) echo " social_nav_$modifier"; ?>" itemscope itemtype="http://schema.org/Organization">
 	<link itemprop="url" href="<?=get_site_url()?>">
-	<?php if ($title) { ?>
+	<?php if (!empty($title)) { ?>
 	<div class="social_nav_header">
 		<h2 class="social_nav_title"><?=esc_html($title)?></h2>
 	</div>
