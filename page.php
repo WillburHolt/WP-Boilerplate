@@ -19,19 +19,18 @@
 
 	while (have_posts()) {
 		the_post();
-		$feature_callouts = get_field('feature');
 		$in_content_callouts = get_field('in_content');
 		$full_width_callouts = get_field('full_width');
+
+		if (!post_password_required()) {
 ?>
 <!-- Page -->
 <div class="page">
-	<?php if (is_array($feature_callouts) && count($feature_callouts)) { ?>
 	<!-- Page Feature -->
 	<div class="page_feature">
-		<?php Boilerplate::drawCallouts($feature_callouts, 'feature', $post->ID); ?>
+		<?php Boilerplate::drawAlertComponent(); ?>
 	</div>
 	<!-- END: Page Feature -->
-	<?php } ?>
 	<!-- Page Content -->
 	<div class="page_content">
 		<div class="fs-row">
@@ -83,6 +82,51 @@
 	<!-- END: Page Content -->
 </div>
 <?php
+		} else {
+?>
+<!-- Page -->
+<div class="page">
+	<!-- Page Feature -->
+	<div class="page_feature">
+		<?php Boilerplate::drawAlertComponent(); ?>
+	</div>
+	<!-- END: Page Feature -->
+	<!-- Page Content -->
+	<div class="page_content">
+		<div class="fs-row">
+			<!-- Sub Nav -->
+			<div class="fs-cell-right fs-lg-4 aside_cell subnav_cell">
+				<?php Boilerplate::drawSubNav(); ?>
+			</div>
+			<!-- END: Sub Nav -->
+			<!-- Main Content -->
+			<div class="fs-cell fs-lg-8 content_cell">
+				<main class="main_content" id="main_content" itemprop="mainContentOfPage">
+					<div class="page_header">
+						<?php
+							Boilerplate::drawBreadcrumb(false, $post);
+							if (get_the_title() && '' !== get_the_title()) {
+						?>
+						<div class="typography">
+							<h1 class="page_title" id="page_title"><?php the_title(); ?></h1>
+						</div>
+						<?php
+							}
+						?>
+					</div>
+					<!-- WYSIWYG - wrap all WYSIWYG text areas in `.typography` -->
+					<div class="typography">
+						<?php the_content(); ?>
+					</div>
+				</main>
+			</div>
+			<!-- END: Main Content -->
+		</div>
+	</div>
+	<!-- END: Page Content -->
+</div>
+<?php
+		}
 	}
 	get_footer();
 ?>
