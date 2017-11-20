@@ -26,7 +26,7 @@
 ?>
 <div class="pagination">
 	<a class="pagination_arrow pagination_arrow_left pagination_arrow_disabled" href="<?=$pagination_prev_link?>">
-		<span class="pagination_arrow_label"><?php _e('Previous'); ?></span>
+		<span class="pagination_arrow_label">Previous</span>
 		<span class="pagination_arrow_icon"><?php Boilerplate::drawSymbol('chevron_left'); ?></span>
 	</a>
 	<nav class="pagination_nav">
@@ -56,7 +56,7 @@
 	</nav>
 	<?php if ($current_page !== $pages) { ?>
 	<a class="pagination_arrow pagination_arrow_right" href="<?=$pagination_next_link?>">
-		<span class="pagination_arrow_label"><?php _e('Next'); ?></span>
+		<span class="pagination_arrow_label">Next</span>
 			<span class="pagination_arrow_icon"><?php Boilerplate::drawSymbol('chevron_right'); ?></span>
 	</a>
 	<?php } ?>

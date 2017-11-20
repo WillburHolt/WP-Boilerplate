@@ -20,8 +20,8 @@
 	<meta itemprop="url" content="<?php the_permalink(); ?>">
 	<form class="site_search_form" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" action="/search/">
 		<meta itemprop="target" content="<?=$search_link?>">
-		<label class="site_search_label" for="search_term_string<?php if ($modifier) echo "_$modifier"; ?>"><?php _e('Search'); ?></label>
-		<input aria-live="polite" class="site_search_input" itemprop="query-input" type="text" id="search_term_string<?php if ($modifier) echo "_$modifier"; ?>" name="search_term_string<?php if ($modifier) echo "_$modifier"; ?>" placeholder="<?=$placeholder?>">
+		<label class="site_search_label" for="search_term_string<?php if ($modifier) echo "_$modifier"; ?>">Search</label>
+		<input aria-live="polite" class="site_search_input" itemprop="query-input" type="text" id="search_term_string<?php if ($modifier) echo "_$modifier"; ?>" name="q" placeholder="<?=$placeholder?>">
 		<button class="site_search_button" type="submit" title="submit" aria-label="submit">
 			<span class="site_search_button_label"><?=$button_label?></span>
 			<span class="site_search_button_icon"><?php Boilerplate::drawSymbol('search'); ?></span>

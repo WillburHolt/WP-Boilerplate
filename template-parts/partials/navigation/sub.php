@@ -42,7 +42,7 @@
 			define('SUBNAV_DRAWN', true);
 ?>
 <nav class="sub_nav" aria-label="Additional Navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-	<button class="js-sub_nav_handle sub_nav_handle"><?php _e('Additional Navigation'); ?></button>
+	<button class="js-sub_nav_handle sub_nav_handle">Additional Navigation</button>
 	<div class="js-navigation js-sub_navigation sub_nav_list" data-navigation-handle=".js-sub_nav_handle" data-navigation-options='{"theme": "sub_nav_base", "labels": {"closed": "Additional Navigation", "Open": "Close"}}'>
 		<?php
 			foreach ($branch_to_draw->children as $item) {

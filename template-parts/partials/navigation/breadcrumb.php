@@ -21,7 +21,7 @@
 	<div class="breadcrumb_list" itemscope itemtype="http://schema.org/BreadcrumbList">
 		<div class="breadcrumb_item" itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem">
 			<a class="breadcrumb_link" href="<?=get_site_url()?>" itemprop="item">
-				<span class="breadcrumb_name" itemprop="name"><?php _e('Home'); ?></span>
+				<span class="breadcrumb_name" itemprop="name">Home</span>
 			</a>
 			<meta itemprop="position" content="1">
 		</div>
@@ -94,7 +94,7 @@
 		?>
 		<div class="breadcrumb_item" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
 			<span class="breadcrumb_label" itemprop="item">
-				<span class="breadcrumb_name" itemprop="name"><?php _e('Page Not Found'); ?></span>
+				<span class="breadcrumb_name" itemprop="name">Page Not Found</span>
 			</span>
 			<meta itemprop="position" content="2">
 		</div>
