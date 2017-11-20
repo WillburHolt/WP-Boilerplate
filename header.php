@@ -79,7 +79,7 @@
 	<body <?php body_class(); ?>>
 		<?php Boilerplate::drawSymbolSprite(); ?>
 		<!-- Skip-to-Content Link -->
-		<a class="skip_link" id="skip_to_content" href="#main_content"><?php _e('Skip to Main Content'); ?></a>
+		<a class="skip_link" id="skip_to_content" href="#main_content">Skip to Main Content</a>
 		<!-- Page Wrapper -->
 		<div class="js-navigation_push page_wrapper">
 			<!-- Header -->
@@ -93,11 +93,11 @@
 								Boilerplate::drawBasicNav('Secondary Navigation', 'secondary_nav', 'Secondary Navigation', 'lg');
 							?>
 							<a class="mobile_sidebar_handle_wrapper" href="#mobile_sidebar">
-								<span class="js-nav_handle mobile_sidebar_handle"><?php _e('Menu'); ?></span>
+								<span class="js-nav_handle mobile_sidebar_handle">Menu</span>
 							</a>
 							<a class="site_search_handle" href="#site_search_lg">
-								<span class="site_search_handle_label"><?php _e('Search'); ?></span>
-								<span class="site_search_handle_icon"><?=Boilerplate::getSymbol('Search')?></span>
+								<span class="site_search_handle_label">Search</span>
+								<span class="site_search_handle_icon"><?php Boilerplate::drawSymbol('Search'); ?></span>
 							</a>
 							<?php Boilerplate::drawSearchForm('Search'); ?>
 						</div>
