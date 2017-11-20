@@ -40,14 +40,16 @@
 			<?php } if ($fax) { ?>
 			<span class="contact_card_type contact_card_phone"><?=esc_html($fax)?></span>
 			<?php } if ($email && is_email($email)) { ?>
-				<a class="contact_card_type contact_card_email" href="<?=esc_url("mailto:$email", ['mailto'])?>"><?=esc_html($email)?></a>
+			<a class="contact_card_type contact_card_email" href="<?=esc_url("mailto:$email", ['mailto'])?>"><?=esc_html($email)?></a>
 			<?php
 				}
 				if ($links) {
 					foreach ($links as $link) {
 						$link_url = $link['link_url'];
 						$link_label = $link['link_label'] ?: $link_url;
-						Boilerplate::drawLink($link_url, $link_label, ['contact_card_type', 'contact_card_external']);
+			?>
+			<a class="contact_card_type contact_card_external_link" <?php Boilerplate::drawHref($link_url); ?>><?=$link_label?></a>
+			<?php
 					}
 				}
 			?>
