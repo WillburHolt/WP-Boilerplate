@@ -52,7 +52,7 @@
 		 * @param string $modifier  Optional. CSS class suffix.
 		 * @since 1.0.0
 		 */
-		public static function drawBasicNav(string $menu_name, string $class, $title = false, $modifier = false) {
+		public static function drawBasicNav(string $menu_name, string $class, string $title = null, string $modifier = null) {
 			include get_template_directory().'/template-parts/partials/navigation/basic.php';
 		}
 
@@ -64,7 +64,7 @@
 		 * @param string $modifier  Optional. CSS class suffix.
 		 * @since 1.0.0
 		 */
-		public static function drawMainNav($menu_name = 'Main Navigation', $title = 'Main Navigation', $modifier = false) {
+		public static function drawMainNav(string $menu_name = 'Main Navigation', string $title = 'Main Navigation', string $modifier = null) {
 			include get_template_directory().'/template-parts/partials/navigation/main.php';
 		}
 
@@ -77,7 +77,7 @@
 		 * @param string $menu_name Optional. Menu name in admin.
 		 * @since 1.0.0
 		 */
-		public static function drawSubNav($menu_name = 'Main Navigation') {
+		public static function drawSubNav(string $menu_name = 'Main Navigation') {
 			include get_template_directory().'/template-parts/partials/navigation/sub.php';
 		}
 
@@ -92,7 +92,7 @@
 		 * @param string $modifier  Optional. CSS class suffix.
 		 * @since 1.0.0
 		 */
-		public static function drawSocialNav($menu_name = 'Social Navigation', $title = 'Social Navigation', $modifier = false) {
+		public static function drawSocialNav(string $menu_name = 'Social Navigation', string $title = 'Social Navigation', string $modifier = null) {
 			include get_template_directory().'/template-parts/partials/navigation/social.php';
 		}
 
@@ -114,7 +114,7 @@
 		 * @param string $modifier     Optional. CSS class suffix.
 		 * @since 1.0.0
 		 */
-		public static function drawSearchForm($placeholder = 'Search', $button_label = 'Submit', $modifier = false) {
+		public static function drawSearchForm(string $placeholder = 'Search', string $button_label = 'Submit', string $modifier = null) {
 			include get_template_directory().'/template-parts/partials/search.php';
 		}
 
@@ -141,7 +141,7 @@
 		 *
 		 * @since 1.0.0
 		 */
-		public static function drawBreadcrumb($modifier = false, $post = false) {
+		public static function drawBreadcrumb(string $modifier = null) {
 			include get_template_directory().'/template-parts/partials/navigation/breadcrumb.php';
 		}
 
@@ -159,7 +159,7 @@
 		 *
 		 * @since 1.0.0
 		 */
-		public static function draw404Page($label, $title, $description = false, $links = false, $background = false, $theme = false) {
+		public static function draw404Page(string $label, string $title, string $description = null, array $links = null, int $background = null, string $theme = null) {
 			include_once get_template_directory().'/template-parts/components/full-width/flexible-callout.php';
 		}
 
@@ -193,7 +193,7 @@
 		 * @param string $content WYSIWYG content.
 		 * @since 1.0.0
 		 */
-		public static function drawWYSIWYG($content) {
+		public static function drawWYSIWYG(string $content) {
 ?>
 			<div class="wysiwyg_block">
 				<div class="typography">
@@ -212,7 +212,7 @@
 		 *                        [["Row1", "Row2"], ["Row1", "Row2"]]
 		 * @since 1.0.0
 		 */
-		public static function drawTable($class, $headers, $rows) {
+		public static function drawTable(string $class, array $headers, array $rows) {
 ?>
 				<table class="<?=$class?>">
 					<thead>
@@ -244,11 +244,11 @@
 		 * @param string $symbol Optional. Button symbol ID.
 		 * @since 1.0.0
 		 */
-		public static function drawButton($class, $link, $label, $symbol = '') {
+		public static function drawButton(string $class, string $link, string $label, string $symbol = null) {
 ?>
 			<a class="<?=$class?>_link" href="<?php static::drawHref($link)?>">
 				<span class="<?=$class?>_link_label"><?=$label?></span>
-				<?php if ('' !== $symbol) { ?>
+				<?php if (!empty($symbol)) { ?>
 				<span class="<?=$class?>_link_icon">
 					<?php static::drawSymbol($symbol); ?>
 				</span>
@@ -262,19 +262,19 @@
 		 *
 		 * @param string $class    HTML class prefix.
 		 * @param string $id       ID prefix.
-		 * @param string $label    Form label.
 		 * @param array  $choices {
 		 *     An array of inputs.
 		 *
 		 *     @type string $dropdown_value
 		 *     @type string $dropdown_label
 		 * }
+		 * @param string $label    Optional. Form label.
 		 * @param string $modifier Optional. CSS class suffix.
 		 * @since 1.0.0
 		 */
-		public static function drawDropdown($class, $id, $label = null, $choices, $modifier = false) {
+		public static function drawDropdown(string $class, string $id, array $choices, string $label = null, string $modifier = null) {
 ?>
-			<div class="fs-dropdown-wrapper <?=$class?>_dropdown_wrapper<?=(false !== $modifier) ? "$class\_dropdown_wrapper_$modifier" : ''?>">
+			<div class="fs-dropdown-wrapper <?=$class?>_dropdown_wrapper<?=!empty($modifier) ? $class."_dropdown_wrapper_$modifier" : ''?>">
 				<?php if ($label) { ?>
 				<label class="<?=$class?>_label" for="<?=$id?>_dropdown"><?=$label?></label>
 				<?php } ?>
@@ -301,9 +301,9 @@
 		 * @param string $class Optional. HTML class prefix.
 		 * @since 1.0.0
 		 */
-		public static function drawInput($type, $id, $label, $class = false) {
+		public static function drawInput(string $type, string $id, string $label, string $class = null) {
 ?>
-			<div class="<?=(false !== $class) ? sanitize_html_class($class)."_form_element " : ''?>form_element">
+			<div class="<?=!empty($class) ? $class."_form_element " : ''?>form_element">
 				<input type="<?=esc_attr($type)?>" id="<?=esc_attr($id)?>">
 				<label for="<?=esc_attr($id)?>"><?=$label?></label>
 			</div>
@@ -318,7 +318,7 @@
 		 * @param  string $label Form label.
 		 * @since 1.0.0
 		 */
-		public static function drawTextarea($type, $id, $label) {
+		public static function drawTextarea(string $type, string $id, string $label) {
 			$id = esc_attr($id);
 ?>
 			<div class="form_element">
@@ -340,7 +340,7 @@
 		 * }
 		 * @since 1.0.0
 		 */
-		public static function drawChoices($type, $items) {
+		public static function drawChoices(string $type, array $items) {
 ?>
 			<div class="form_element">
 				<?php
@@ -364,7 +364,7 @@
 		 * @param string $url Hyperlink.
 		 * @since 1.0.0
 		 */
-		public static function drawHref($url) {
+		public static function drawHref(string $url) {
 			$html = 'href="'.esc_url($url).'"';
 			if (false === strpos($url, get_site_url())) {
 				$html .= ' target="_blank"';
@@ -387,7 +387,7 @@
 		 * @return array Input markup.
 		 * @since 1.0.0
 		 */
-		public static function getRelatedPostsArray($type, $taxonomies, $tags, $to_return) {
+		public static function getRelatedPostsArray(string $type, $taxonomies, $tags, int $to_return) {
 			$posts = get_posts([
 				'posts_per_page' => -1,
 				'post_type' => $type,
@@ -424,7 +424,7 @@
 		 * @return array Menu array.
 		 * @since 1.0.0
 		 */
-		public static function getParsedMenuArray($menu, $levels = 1, $parent = 0) {
+		public static function getParsedMenuArray(array $menu, int $levels = 1, int $parent = 0) {
 			if (is_array($menu)) {
 				$parsed_menu = [];
 				foreach ($menu as $post) {
@@ -449,7 +449,7 @@
 		 * @return array Pagination array.
 		 * @since 1.0.0
 		 */
-		public static function getPaginationArray($current_page, $total_num_pages, $max_to_show = 9) {
+		public static function getPaginationArray(int $current_page, int $total_num_pages, int $max_to_show = 9) {
 			if (0 === $total_num_pages) {
 				$total_num_pages = 1;
 			}
@@ -502,10 +502,10 @@
 		 * @param string|array $size          Image size identifier(s).
 		 * @param bool         $icon          Whether the image should be treated
 		 *                                    as an icon.
-		 * @param string       $attr          HTML attributes.
+		 * @param array        $attr          HTML attributes.
 		 * @since 1.0.0
 		 */
-		public static function drawImage($attachment_id, $class, $size = 'square_thumb', $icon = false, $attr = []) {
+		public static function drawImage(int $attachment_id, string $class, $size = 'square_thumb', bool $icon = false, array $attr = []) {
 			$image = wp_get_attachment_image_src($attachment_id, $size, $icon);
 			if ($image) {
 				list($src, $width, $height) = $image;
@@ -546,7 +546,7 @@
 		 * @param string|array $fallback      Optional. Image size identifier(s).
 		 * @since 1.0.0
 		 */
-		public static function drawPicture($image, $class = 'media', $sources = ['1220px' => 'wide-med', '500px' => 'wide-sml'], $fallback = null) {
+		public static function drawPicture(int $attachment_id, string $class = 'media', array $sources = ['1220px' => 'wide-med', '500px' => 'wide-sml'], $fallback = null) {
 			if (!$fallback) {
 				$fallback = array_pop($sources);
 			}
@@ -554,10 +554,10 @@
 			<picture class="<?=$class?>_picture">
 				<!--[if IE 9]><video style="display: none;"><![endif]-->
 				<?php foreach ($sources as $key => $value) { ?>
-				<source media="(min-width: <?=$key?>)" srcset="<?=static::getImageSrc($image, $value)?>">
+				<source media="(min-width: <?=$key?>)" srcset="<?=static::getImageSrc($attachment_id, $value)?>">
 				<?php
 					}
-					static::drawImage($image, $class, $fallback);
+					static::drawImage($attachment_id, $class, $fallback);
 				?>
 			</picture>
 <?php
@@ -572,7 +572,7 @@
 		 * @return string Image URL.
 		 * @since 1.0.0
 		 */
-		public static function getImageSrc($image, $name) {
+		public static function getImageSrc($image, string $name) {
 			if (is_array($image) && isset($image['sizes']) && isset($image['sizes'][$name])) {
 				$img = [$image['sizes'][$name]];
 			} else {
@@ -589,7 +589,7 @@
 		 * @return string Alternate image text.
 		 * @since 1.0.0
 		 */
-		public static function getImageAlt($attachment_id) {
+		public static function getImageAlt(int $attachment_id) {
 			return trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true)));
 		}
 
@@ -609,7 +609,7 @@
 		 * @param int  $lazy_edge             Optional. Lazy edge.
 		 * @since 1.0.0
 		 */
-		public static function drawImageBackground($class, $attachment_id, $sources, $include_js_class = true, $lazy = true, $lazy_edge = 100) {
+		public static function drawImageBackground(string $class, int $attachment_id, array $sources, bool $include_js_class = true, bool $lazy = true, int $lazy_edge = 100) {
 			$source_array = [];
 
 			foreach ($sources as $breakpoint => $prefix) {
@@ -635,20 +635,19 @@
 		/**
 		 * Draw background image markup.
 		 *
-		 * @param string       $class         Class prefix.
-		 * @param int          $attachment_id The attachment ID of the image.
-		 * @param array        $sources {
-		 *     Accepts the ID of a taxonomy or an array of multiple taxonomies.
-		 *
-		 *     @type string $image_size Image size (e.g. 1220px).
-		 *     @type string $image_size_id Image size identifier.
-		 * }
-		 * @param bool $include_js_class      Optional. Add js-background class.
-		 * @param bool $lazy                  Optional. Lazy load with scroll.
-		 * @param int  $lazy_edge             Optional. Lazy edge.
+		 * @param string $class            Class prefix.
+		 * @param int    $source           The attachment ID of the image.
+		 * @param string $poster           The poster image.
+		 * @param bool   $include_js_class Optional. Add js-background class.
+		 * @param bool   $autoplay         Optional. Automatically play.
+		 * @param bool   $loop             Optional. Automatically loop.
+		 * @param bool   $mute             Optional. Mute by default.
+		 * @param float  $embedRatio       Optional. Aspect ratio. Default is 16:9.
+		 * @param bool   $lazy             Optional. Lazy load with scroll.
+		 * @param int    $lazy_edge        Optional. Lazy edge.
 		 * @since 1.0.0
 		 */
-		public static function drawVideoBackground($class, $source, $poster, $include_js_class = true, $autoplay = false, $loop = false, $mute = false, $embedRatio = 1.777777, $lazy = false, $lazy_edge = 100) {
+		public static function drawVideoBackground(string $class, int $source, string $poster, bool $include_js_class = true, bool $autoplay = false, bool $loop = false, bool $mute = false, float $embedRatio = 1.777777, bool $lazy = false, int $lazy_edge = 100) {
 
 			$options = json_encode([
 				'source' => ['poster' => $poster, 'video' => esc_attr($source)],
@@ -677,10 +676,10 @@
 		 * @param string $modifier Optional. Class suffix.
 		 * @since 1.0.0
 		 */
-		public static function drawSymbol($id, $modifier = '') {
+		public static function drawSymbol(string $id, string $modifier = null) {
 			$classes = [];
 			$classes[] = "symbol symbol_$id";
-			if ('' !== $modifier) {
+			if (!empty($modifier)) {
 				$classes[] = "symbol_$modifier";
 			}
 ?>
