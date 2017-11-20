@@ -17,8 +17,8 @@
 	$title = $callout['title'];
 	$items = $callout['items'];
 ?>
-<div class="media_gallery<?php if ($theme) echo " theme_$theme"; ?>">
-	<?php if ($title) { ?>
+<div class="media_gallery<?php if (!empty($theme)) echo " theme_$theme"; ?>">
+	<?php if (!empty($title)) { ?>
 	<header class="media_gallery_header">
 		<h2 class="media_gallery_title"><?=esc_html($title)?></h2>
 	</header>
