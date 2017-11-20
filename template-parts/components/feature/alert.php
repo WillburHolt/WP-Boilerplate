@@ -13,28 +13,32 @@
 	namespace Boilerplate;
 
 	// Define Advanced Custom Fields.
-	$title = $callout['title'];
-	$description = $callout['description'];
-	$link_url = $callout['link_url'];
-	$datetime = $callout['datetime'];
+	$status = (string) get_field('alert_status', 'option');
+	$title = get_field('alert_title', 'option');
+	$description = get_field('alert_description', 'option');
+	$link_url = get_field('alert_link_url', 'option');
+
+	if ($status === '1' && !empty($title) && !empty($description)) {
 ?>
-<section class="js-toggle js-alert alert" role="alert" data-time="<?=$datetime?>">
+<section class="js-toggle js-alert alert" role="alert" data-time="<?=date('G:i:s')?>">
 	<div class="fs-row">
 		<div class="fs-cell">
 			<div class="alert_body">
 				<button class="js-toggle_handle js-alert-close alert_close">
-					<span class="alert_close_label"><?php _e('Close Alert'); ?></span>
+					<span class="alert_close_label">Close Alert</span>
 					<span class="alert_close_icon"><?php Boilerplate::drawSymbol('close'); ?></span>
 				</button>
 				<div class="alert_content">
 					<header class="alert_header">
 						<div class="alert_time">
-							<time class="alert_time_item" datetime="<?=$datetime?>"><?=$datetime?></time>
+							<time class="alert_time_item" datetime="<?=date('Y-m-d')?>"><?=date('F d')?></time>
 						</div>
 						<h2 class="alert_title">
 							<?php
-								if ($link_url) {
-									Boilerplate::drawLink($link_url, $title, 'alert_title_link');
+								if (!empty($link_url)) {
+							?>
+							<a class="alert_title_link" <?php Boilerplate::drawHref($link_url); ?>><?=$title?></a>
+							<?php
 								} else {
 									esc_html($title);
 								}
@@ -49,3 +53,6 @@
 		</div>
 	</div>
 </section>
+<?php
+	}
+?>
