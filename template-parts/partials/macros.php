@@ -597,7 +597,7 @@
 		 * Draw background image markup.
 		 *
 		 * @param string       $class         Class prefix.
-		 * @param int          $attachment_id The attachment ID of the image.
+		 * @param int|array    $attachment_id The attachment ID of the image.
 		 * @param array        $sources {
 		 *     Accepts the ID of a taxonomy or an array of multiple taxonomies.
 		 *
@@ -609,7 +609,7 @@
 		 * @param int  $lazy_edge             Optional. Lazy edge.
 		 * @since 1.0.0
 		 */
-		public static function drawImageBackground(string $class, int $attachment_id, array $sources, bool $include_js_class = true, bool $lazy = true, int $lazy_edge = 100) {
+		public static function drawImageBackground(string $class, $attachment_id, array $sources, bool $include_js_class = true, bool $lazy = true, int $lazy_edge = 100) {
 			$source_array = [];
 
 			foreach ($sources as $breakpoint => $prefix) {
