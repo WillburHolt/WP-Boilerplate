@@ -19,24 +19,22 @@
 
 	while (have_posts()) {
 		the_post();
-		$feature_callouts = get_field('feature');
+		$post_id = get_the_ID();
 		$full_width_callouts = get_field('full_width');
 ?>
 <!-- Page -->
 <div class="page">
-	<?php if (is_array($feature_callouts) && count($feature_callouts)) { ?>
 	<!-- Page Feature -->
 	<div class="page_feature">
-		<?php Boilerplate::drawCallouts($feature_callouts, 'feature', $post->ID); ?>
+		<?php Boilerplate::drawAlertComponent(); ?>
 	</div>
 	<!-- END: Page Feature -->
-	<?php } ?>
 	<!-- Page Content -->
 	<div class="page_content">
 		<?php if (is_array($full_width_callouts) && count($full_width_callouts)) { ?>
 		<!-- Full Width Callouts -->
 		<div class="full_width_callouts">
-			<?php Boilerplate::drawCallouts($full_width_callouts, 'full-width', $post->ID); ?>
+			<?php Boilerplate::drawCallouts($full_width_callouts, 'full-width', $post_id); ?>
 		</div>
 		<!-- END: Full Width Callouts -->
 		<?php } ?>
