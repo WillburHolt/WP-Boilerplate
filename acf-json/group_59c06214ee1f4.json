@@ -1,18 +1,17 @@
 {
     "key": "group_59c06214ee1f4",
-    "title": "404 Error Page",
+    "title": "404 Page",
     "fields": [
         {
-            "key": "field_59c0621dfe960",
-            "label": "Label",
-            "name": "404_error_page_label",
+            "key": "field_59c06253fe961",
+            "label": "Title",
+            "name": "404_title",
             "type": "text",
-            "value": null,
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -21,130 +20,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_59c06253fe961",
-            "label": "Title",
-            "name": "404_error_page_title",
-            "type": "text",
-            "value": null,
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "We're Sorry!",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_59c0625efe962",
-            "label": "Description",
-            "name": "404_error_page_description",
-            "type": "textarea",
-            "value": null,
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "The page you tried to access was not found. You may use the site search below or go back to the homepage. For additional concerns or questions please contact us.",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": "br"
-        },
-        {
-            "key": "field_59c06278fe963",
-            "label": "Links",
-            "name": "404_error_page_links",
-            "type": "repeater",
-            "value": null,
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add Link",
-            "sub_fields": [
-                {
-                    "key": "field_59c062e405a6c",
-                    "label": "Link Label",
-                    "name": "link_label",
-                    "type": "text",
-                    "value": null,
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_59c062f705a6d",
-                    "label": "Link URL",
-                    "name": "link_url",
-                    "type": "url",
-                    "value": null,
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                }
-            ]
-        },
-        {
-            "key": "field_59c06293fe964",
-            "label": "Background",
-            "name": "404_error_page_background",
-            "type": "image",
-            "value": null,
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "wide-med",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
         }
     ],
     "location": [
@@ -164,5 +39,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1508179008
+    "modified": 1510950405
 }

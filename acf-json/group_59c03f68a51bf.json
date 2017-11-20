@@ -7,7 +7,6 @@
             "label": "Title",
             "name": "post_listing_title",
             "type": "text",
-            "value": null,
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -32,13 +31,13 @@
             }
         ]
     ],
-    "menu_order": 1,
-    "position": "normal",
+    "menu_order": 0,
+    "position": "acf_after_title",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1508179027
+    "modified": 1510935040
 }
