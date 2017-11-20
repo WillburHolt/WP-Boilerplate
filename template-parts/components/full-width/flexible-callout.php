@@ -36,19 +36,23 @@
 					<h2 class="flex_callout_label"><?=esc_html($label)?></h2>
 					<h3 class="flex_callout_title"><?=esc_html($title)?></h3>
 				</header>
-				<?php if ($description) { ?>
+				<?php if (!empty($description)) { ?>
 				<div class="flex_callout_body">
 					<div class="flex_callout_description">
 						<p><?=esc_html($description)?></p>
 					</div>
 				</div>
-				<?php } if ($links) { ?>
+			<?php } if (!empty($links)) { ?>
 				<footer class="flex_callout_links">
 					<?php
 						foreach ($links as $link) {
 							$link_url = $link['link_url'];
 							$link_label = $link['link_label'] ?: $link_url;
-							Boilerplate::drawLink($link_url, $link_label, 'flex_callout_link', '<span>', '</span>');
+					?>
+					<a class="flex_callout_link" <?php Boilerplate::drawHref($link_url); ?> itemprop="url">
+						<span><?=$link_label?></span>
+					</a>
+					<?php
 						}
 					?>
 				</footer>

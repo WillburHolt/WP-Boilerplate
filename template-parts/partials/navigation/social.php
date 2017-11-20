@@ -35,15 +35,14 @@
 				$active = $post_id === $item->object_id;
 		?>
 		<div class="social_nav_item">
-			<?php
-				$link_wrapper_before = '
-					<span class="social_nav_icon">'.Boilerplate::getSymbol(sanitize_title($item->title)).'</span>
-					<span class="social_nav_label">
-				';
-				Boilerplate::drawLink($item->url, $item->title, 'social_nav_link', $link_wrapper_before, '</span>', ['itemprop' => 'sameAs']);
-			?>
+			<a class="social_nav_link" <?php Boilerplate::drawHref($item->url); ?> itemprop="sameAs">
+				<span class="social_nav_icon"><?=Boilerplate::drawSymbol(sanitize_title($item->title))?></span>
+				<span class="social_nav_label"><?=$child->title?></span>
+			</a>
 		</div>
-		<?php } ?>
+		<?php
+			}
+		?>
 	</div>
 </div>
 <?php } ?>

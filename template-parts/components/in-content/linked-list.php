@@ -31,7 +31,7 @@
 					$link_label = $link['link_label'] ?: $link_url;
 			?>
 			<li class="linked_list_item">
-				<?php Boilerplate::drawLink($link_url, $link_label, 'linked_list_link'); ?>
+				<a class="linked_list_link" <?php Boilerplate::drawHref($link_url); ?>><?=$link_label?></a>
 			</li>
 			<?php
 				}

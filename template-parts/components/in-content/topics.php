@@ -53,7 +53,11 @@
 							foreach ($topic_links as $topic_link) {
 								$link_url = $topic_link['link_url'];
 								$link_label = $topic_link['link_label'] ?: $link_url;
-								Boilerplate::drawLink($link_url, $link_label, 'topic_link', '<span>', '</span>');
+						?>
+						<a class="topic_link" <?php Boilerplate::drawHref($link_url); ?>>
+							<span><?=$link_label?></span>
+						</a>
+						<?php
 							}
 						?>
 					</footer>

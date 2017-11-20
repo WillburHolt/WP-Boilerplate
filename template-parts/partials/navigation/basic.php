@@ -33,17 +33,15 @@
 				$active = $post_id === $item->object_id;
 		?>
 		<div class="<?=$class?>_item<?php if ($modifier) echo " $modifier"; ?>" itemprop="url">
-			<?php
-				Boilerplate::drawLink($item->url, $item->title, $class.'_link', '', '', ['itemprop' => 'name']);
-				if ($active && count($item->children)) {
-			?>
+			<a class="<?=$class?>_link" <?php Boilerplate::drawHref($item->url); ?> itemprop="name"><?=$item->title?></a>
+			<?php if ($active && count($item->children)) { ?>
 				<div class="<?=$class?>_children">
 					<?php
 						foreach ($item->children as $child) {
 							$active = $post_id === $item->object_id;
 					?>
 					<div class="<?=$class?>_child_item<?php if ($child_active) echo ' sub_nav_child_item_active'; ?>" itemprop="url">
-						<?php Boilerplate::drawLink($child->url, $child->title, $class.'_child_link', '', '', ['itemprop' => 'name']); ?>
+						<a class="<?=$class?>_child_link" <?php Boilerplate::drawHref($child->url); ?> itemprop="name"><?=$child->title?></a>
 					</div>
 					<?php } ?>
 				</div>
