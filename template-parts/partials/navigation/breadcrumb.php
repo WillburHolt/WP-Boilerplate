@@ -15,6 +15,8 @@
 	// Everything is stored in our namespace.
 	namespace Boilerplate;
 
+	global $post;
+
 	$post_ancestors = get_ancestors();
 ?>
 <div class="breadcrumb_nav<?php if (!empty($modifier)) echo " breadcrumb_nav_$modifier"; ?>">
