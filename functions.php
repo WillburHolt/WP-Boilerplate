@@ -39,15 +39,6 @@
 			'capability'	=> 'edit_pages',
 			'parent_slug' => 'edit.php'
 		]);
-/*
-		acf_add_options_sub_page([
-			'page_title' 	=> 'Global Settings',
-			'menu_title'	=> 'Global Settings',
-			'menu_slug' 	=> 'global-settings',
-			'capability'	=> 'edit_theme_options',
-			'parent_slug' => 'themes.php'
-		]);
-*/
 		acf_add_options_sub_page([
 			'page_title' 	=> 'Site Alert',
 			'menu_title'	=> 'Site Alert',
