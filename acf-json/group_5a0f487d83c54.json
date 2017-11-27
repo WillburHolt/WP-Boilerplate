@@ -1,0 +1,62 @@
+{
+    "key": "group_5a0f487d83c54",
+    "title": "Search Page",
+    "fields": [
+        {
+            "key": "field_5a0f555d6031d",
+            "label": "Title",
+            "name": "search_page_title",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Search",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a0f48874e53b",
+            "label": "Google CSE Key",
+            "name": "search_page_cse_key",
+            "type": "text",
+            "instructions": "You can generate your Google CSE key at https:\/\/cse.google.com.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "search-page-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1510954380
+}
