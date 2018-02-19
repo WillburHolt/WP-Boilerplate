@@ -5,3 +5,9 @@ js/
 node_cache/
 node_modules/
 static/
+src/
+browserconfig.xml
+crossdomain.xml
+gulpfile.js
+package-lock.json
+package.json
