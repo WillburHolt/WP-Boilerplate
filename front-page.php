@@ -19,7 +19,6 @@
 
 	while (have_posts()) {
 		the_post();
-		$post_id = get_the_ID();
 		$full_width_callouts = get_field('full_width');
 ?>
 <!-- Page -->
@@ -34,7 +33,7 @@
 		<?php if (is_array($full_width_callouts) && count($full_width_callouts)) { ?>
 		<!-- Full Width Callouts -->
 		<div class="full_width_callouts">
-			<?php Boilerplate::drawCallouts($full_width_callouts, 'full-width', $post_id); ?>
+			<?php Boilerplate::drawCallouts($full_width_callouts, 'full-width', $post->ID); ?>
 		</div>
 		<!-- END: Full Width Callouts -->
 		<?php } ?>

@@ -87,7 +87,7 @@
 		</div>
 		<div class="breadcrumb_item" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
 			<span class="breadcrumb_label" itemprop="item">
-				<span class="breadcrumb_name" itemprop="name"><?php echo $page_title ? $page_title : the_title(); ?></span>
+				<span class="breadcrumb_name" itemprop="name"><?php echo !empty($page_title) ? $page_title : the_title(); ?></span>
 			</span>
 			<meta itemprop="position" content="2">
 		</div>

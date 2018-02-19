@@ -19,7 +19,7 @@
 
 	if (!empty($navigation)) {
 ?>
-<nav class="<?=$class?><?php if (!empty($modifier)) echo " $class\_$modifier"; ?>" aria-label="<?=$title?>" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav class="<?=$class?><?php if (!empty($modifier)) echo " $class"."_$modifier"; ?>" aria-label="<?=$title?>" itemscope itemtype="http://schema.org/SiteNavigationElement">
 	<?php if (!empty($title)) { ?>
 	<div class="<?=$class?>_header">
 		<h2 class="<?=$class?>_title"><?=esc_html($title)?></h2>

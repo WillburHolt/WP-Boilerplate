@@ -21,7 +21,7 @@
 		<div class="fs-cell">
 			<script>
 				(function() {
-					var cx = '<?=wp_json_encode($key)?>';
+					var cx = <?=wp_json_encode($key)?>;
 					var gcse = document.createElement('script');
 					gcse.type = 'text/javascript';
 					gcse.async = true;
