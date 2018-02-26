@@ -424,7 +424,7 @@
 		 * @return array Menu array.
 		 * @since 1.0.0
 		 */
-		public static function getParsedMenuArray(array $menu, int $levels = 1, int $parent = 0) {
+		public static function getParsedMenuArray($menu, int $levels = 1, int $parent = 0) {
 			if (is_array($menu)) {
 				$parsed_menu = [];
 				foreach ($menu as $post) {
