@@ -28,6 +28,8 @@
 		exit;
 	}
 
+	date_default_timezone_set(get_option('timezone_string'));
+
 	// Include our macros.
 	require_once get_parent_theme_file_path('template-parts/partials/macros.php');
 
