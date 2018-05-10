@@ -52,16 +52,25 @@
 						Boilerplate::drawPicture($image, 'media_gallery', ['1220px' => 'wide-med'], 'wide-med');
 					?>
 					<span class="media_gallery_symbol"><?php Boilerplate::drawSymbol('symbol'); ?></span>
-					<?php if ($video) { ?>
+					<?php
+						if ($video) {
+					?>
 					</a>
-					<?php } if ($caption) { ?>
+					<?php
+						}
+						if ($caption) {
+					?>
 					<figcaption class="media_gallery_figcaption">
 						<p><?=esc_html($caption)?></p>
 					</figcaption>
-					<?php } ?>
+					<?php
+						}
+					?>
 				</figure>
 			</div>
-			<?php } ?>
+			<?php
+				}
+			?>
 		</div>
 	</div>
 </div>

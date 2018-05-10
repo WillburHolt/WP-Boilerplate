@@ -119,4 +119,3 @@
 <?php
 	}
 	get_footer();
-?>

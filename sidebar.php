@@ -24,4 +24,5 @@
 	</div>
 </div>
 <!-- END: Sidebar Callouts -->
-<?php } ?>
+<?php
+	}

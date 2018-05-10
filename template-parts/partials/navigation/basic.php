@@ -30,7 +30,7 @@
 			$navigation_index = 0;
 			foreach ($navigation as $item) {
 				$navigation_index++;
-				$active = $post_id === $item->object_id;
+				$active = $post_id == $item->object_id;
 		?>
 		<div class="<?=$class?>_item<?php if (!empty($modifier)) echo " $modifier"; ?>" itemprop="url">
 			<a class="<?=$class?>_link" <?php Boilerplate::drawHref($item->url); ?> itemprop="name"><?=$item->title?></a>
@@ -38,12 +38,14 @@
 				<div class="<?=$class?>_children">
 					<?php
 						foreach ($item->children as $child) {
-							$child_active = $post_id === $child->object_id;
+							$child_active = $post_id == $child->object_id;
 					?>
 					<div class="<?=$class?>_child_item<?php if ($child_active) echo ' sub_nav_child_item_active'; ?>" itemprop="url">
 						<a class="<?=$class?>_child_link" <?php Boilerplate::drawHref($child->url); ?> itemprop="name"><?=$child->title?></a>
 					</div>
-					<?php } ?>
+					<?php
+						}
+					?>
 				</div>
 			<?php } ?>
 		</div>
@@ -52,4 +54,5 @@
 		?>
 	</div>
 </nav>
-<?php } ?>
+<?php
+	}

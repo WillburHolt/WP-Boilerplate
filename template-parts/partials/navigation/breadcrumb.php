@@ -78,7 +78,6 @@
 					$post_type = get_post_type();
 					$post_type_object = get_post_type_object($post_type);
 		?>
-		<!-- <?php print_r($post_type); ?> -->
 		<div class="breadcrumb_item" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
 			<span class="breadcrumb_label" itemprop="item">
 				<span class="breadcrumb_name" itemprop="name"><a class="breadcrumb_link" href="<?php echo get_post_type_archive_link($post_type); ?>"><?php echo $post_type_object->labels->name; ?></a></span>

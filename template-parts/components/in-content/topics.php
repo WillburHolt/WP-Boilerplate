@@ -35,7 +35,7 @@
 			<div class="topic_row_inner">
 				<?php if ($topic_image) { ?>
 				<figure class="topic_figure">
-					<?php Boilerplate::drawPicture($topic_image, 'topic', ['500px' => 'classic-xxsml'], 'square-xxsml')?>
+					<?php Boilerplate::drawPicture($topic_image, 'topic', ['500px' => 'classic-xxsml'], 'square-xxsml'); ?>
 				</figure>
 				<?php } ?>
 				<div class="topic_wrapper">
@@ -65,6 +65,8 @@
 				</div>
 			</div>
 		</article>
-		<?php } ?>
+		<?php
+			}
+		?>
 	</div>
 </div>

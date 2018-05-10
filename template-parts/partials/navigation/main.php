@@ -30,7 +30,7 @@
 			$navigation_index = 0;
 			foreach ($navigation as $item) {
 				$navigation_index++;
-				$active = $post_id === $item->object_id;
+				$active = $post_id == $item->object_id;
 		?>
 		<div class="js-main-nav-item-<?=$navigation_index?> main_nav_item<?php if ($active) echo " active"; if ($modifier) echo " $modifier"; ?>" itemprop="url">
 			<div class="main_nav_item_wrapper">
@@ -40,20 +40,25 @@
 					<span class="main_nav_toggle_icon"><?php Boilerplate::drawSymbol('caret_down'); ?></span>
 				</button>
 			</div>
-			<?php if (count($item->children) > 0) { ?>
+			<?php if (is_array($item->children) && count($item->children)) { ?>
 			<div class="main_nav_children">
 				<?php
 					foreach ($item->children as $child) {
-						$child_active = $post_id === $child->object_id;
+						$child_active = $post_id == $child->object_id;
 				?>
 				<div class="main_nav_child_item<?php if ($child_active) echo ' sub_nav_child_item_active'; ?>" itemprop="url">
 					<a class="main_nav_child_link" <?php Boilerplate::drawHref($child->url); ?> itemprop="name"><?=$child->title?></a>
 				</div>
-				<?php } ?>
+				<?php
+					}
+				?>
 			</div>
 			<?php } ?>
 		</div>
-		<?php } ?>
+		<?php
+			}
+		?>
 	</div>
 </nav>
-<?php } ?>
+<?php
+	}

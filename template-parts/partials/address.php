@@ -21,17 +21,36 @@
 	$phone = get_field('footer_phone', 'option');
 ?>
 <div class="footer_address" itemscope itemtype="http://schema.org/PostalAddress">
-	<?php if (!empty($name)) { ?>
+	<?php
+		if (!empty($name)) {
+	?>
 	<span class="footer_address_name" itemprop="name"><?=esc_html($name)?></span>
-	<?php } if (!empty($street)) { ?>
+	<?php
+		}
+		if (!empty($street)) {
+	?>
 	<span class="footer_address_street" itemprop="streetAddress"><?=esc_html($street)?></span>
-	<?php } if (!empty($city)) { ?>
+	<?php
+		}
+		if (!empty($city)) {
+	?>
 	<span class="footer_address_city" itemprop="addressLocality"><?=esc_html($city)?></span>
-	<?php } if (!empty($state)) { ?>
+	<?php
+		}
+		if (!empty($state)) {
+	?>
 	<span class="footer_address_state" itemprop="addressRegion"><?=esc_html($state)?></span>
-	<?php } if (!empty($zip)) { ?>
+	<?php
+		}
+		if (!empty($zip)) {
+	?>
 	<span class="footer_address_zip" itemprop="postalCode"><?=esc_html($zip)?></span>
-	<?php } if (!empty($phone)) { ?>
+	<?php
+		}
+		if (!empty($phone)) {
+	?>
 	<a class="footer_address_phone" itemprop="telephone" href="<?=esc_url("tel:$phone", ['tel'])?>"><?=esc_html($phone)?></a>
-	<?php } ?>
+	<?php
+		}
+	?>
 </div>

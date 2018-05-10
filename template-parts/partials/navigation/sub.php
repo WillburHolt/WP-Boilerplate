@@ -16,7 +16,7 @@
 	namespace Boilerplate;
 
 	$navigation_items = wp_get_nav_menu_items($menu_name);
-	$navigation = Boilerplate::getParsedMenuArray($navigation_items, 8);
+	$navigation = Boilerplate::getParsedMenuArray($navigation_items, 999);
 
 	if (!empty($navigation)) {
 
@@ -33,7 +33,7 @@
 		$branch_to_draw = false;
 
 		foreach ($navigation as $level) {
-			if ($level->object_id === $top_level_id) {
+			if ($level->object_id == $top_level_id) {
 				$branch_to_draw = $level;
 			}
 		}
@@ -46,7 +46,7 @@
 	<div class="js-navigation js-sub_navigation sub_nav_list" data-navigation-handle=".js-sub_nav_handle" data-navigation-options='{"theme": "sub_nav_base", "labels": {"closed": "Additional Navigation", "Open": "Close"}}'>
 		<?php
 			foreach ($branch_to_draw->children as $item) {
-				$active = in_array($item->object_id, $post_ancestors) || $item->object_id === $post->ID;
+				$active = in_array($item->object_id, $post_ancestors) || $item->object_id == $post->ID;
 		?>
 		<div class="sub_nav_item<?php if ($active) { ?> sub_nav_item_active<?php } ?>" itemprop="url">
 			<a class="sub_nav_link" <?php Boilerplate::drawHref($item->url); ?> itemprop="name"><?=$item->title?></a>
@@ -54,7 +54,7 @@
 			<div class="sub_nav_children">
 				<?php
 					foreach ($item->children as $child) {
-						$child_active = in_array($child->object_id, $post_ancestors) || $child->object_id === $post->ID;
+						$child_active = in_array($child->object_id, $post_ancestors) || $child->object_id == $post->ID;
 				?>
 				<div class="sub_nav_child_item<?php if ($child_active) { ?> sub_nav_child_item_active<?php } ?>" itemprop="url">
 					<a class="sub_nav_child_link" <?php Boilerplate::drawHref($child->url); ?> itemprop="name"><?=$child->title?></a>
@@ -66,14 +66,17 @@
 					</div>
 					<?php } ?>
 				</div>
-				<?php } ?>
+				<?php
+					}
+				?>
 			</div>
 			<?php } ?>
 		</div>
-		<?php } ?>
+		<?php
+			}
+		?>
 	</div>
 </nav>
 <?php
 		}
 	}
-?>

@@ -24,7 +24,7 @@
 	namespace Boilerplate;
 
 	// Deny direct access to this file.
-	if (false === defined('ABSPATH')) {
+	if (!defined('ABSPATH')) {
 		exit;
 	}
 
@@ -308,4 +308,3 @@
 	add_filter('wp_calculate_image_sizes', '__return_empty_array',  PHP_INT_MAX);
 	add_filter('wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX);
 	remove_filter('the_content', 'wp_make_content_images_responsive');
-?>

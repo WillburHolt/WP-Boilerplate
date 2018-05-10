@@ -48,4 +48,3 @@
 <?php
 	}
 	get_footer();
-?>

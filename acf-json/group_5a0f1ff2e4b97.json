@@ -27,6 +27,23 @@
             "return_format": "value"
         },
         {
+            "key": "field_5af3b4317b95e",
+            "label": "Alert Date\/Time",
+            "name": "alert_datetime",
+            "type": "date_time_picker",
+            "instructions": "This <strong>must<\/strong> be updated to the current date\/time each time you change the alert.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d H:i:s",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 0
+        },
+        {
             "key": "field_5a0f200cc0d65",
             "label": "Alert Title",
             "name": "alert_title",
@@ -98,5 +115,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1510944985
+    "modified": 1525935277
 }

@@ -121,4 +121,3 @@
 <?php
 	}
 	get_footer();
-?>

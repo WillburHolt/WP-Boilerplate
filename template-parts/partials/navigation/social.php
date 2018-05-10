@@ -32,7 +32,7 @@
 	<div class="social_nav_list">
 		<?php
 			foreach ($navigation as $item) {
-				$active = $post_id === $item->object_id;
+				$active = $post_id == $item->object_id;
 		?>
 		<div class="social_nav_item">
 			<a class="social_nav_link" <?php Boilerplate::drawHref($item->url); ?> itemprop="sameAs">
@@ -45,4 +45,5 @@
 		?>
 	</div>
 </div>
-<?php } ?>
+<?php
+	}

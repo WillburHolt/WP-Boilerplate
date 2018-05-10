@@ -13,4 +13,3 @@
  	namespace Boilerplate;
 
 	Boilerplate::drawWYSIWYG($callout['wysiwyg']);
-?>

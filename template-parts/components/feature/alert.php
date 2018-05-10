@@ -17,10 +17,11 @@
 	$title = get_field('alert_title', 'option');
 	$description = get_field('alert_description', 'option');
 	$link_url = get_field('alert_link_url', 'option');
+	$time = strtotime(get_field('alert_datetime', 'option'));
 
 	if ($status === '1' && !empty($title) && !empty($description)) {
 ?>
-<section class="js-toggle js-alert alert" role="alert" data-time="<?=date('G:i:s')?>">
+<section class="js-toggle js-alert alert" role="alert" data-time="<?=date('Y-m-dg:i:s', $time)?>">
 	<div class="fs-row">
 		<div class="fs-cell">
 			<div class="alert_body">
@@ -31,7 +32,7 @@
 				<div class="alert_content">
 					<header class="alert_header">
 						<div class="alert_time">
-							<time class="alert_time_item" datetime="<?=date('Y-m-d')?>"><?=date('F d')?></time>
+							<time class="alert_time_item" datetime="<?=date('Y-m-d', $time)?>"><?=date('F d', $time)?></time>
 						</div>
 						<h2 class="alert_title">
 							<?php
@@ -46,7 +47,7 @@
 						</h2>
 					</header>
 					<div class="alert_description">
-						<p><?=esc_html($description)?></p>
+						<p><?=strip_tags(wpautop($description), '<br><a><b><i><u><strong><em>')?></p>
 					</div>
 				</div>
 			</div>
@@ -55,4 +56,3 @@
 </section>
 <?php
 	}
-?>

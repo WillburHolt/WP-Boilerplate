@@ -32,14 +32,22 @@
 	<div class="contact_card_body">
 		<h3 class="contact_card_name"><?=esc_html($name)?></h3>
 		<div class="contact_card_info">
-			<div class="contact_card_description"><?=esc_html($description)?></div>
+			<div class="contact_card_description"><?=strip_tags($description, '<br><a><b><i><u><strong><em>')?></div>
 		</div>
 		<div class="contact_card_types">
-			<?php if ($phone) { ?>
+			<?php
+				if ($phone) {
+			?>
 			<span class="contact_card_type contact_card_phone"><?=esc_html($phone)?></span>
-			<?php } if ($fax) { ?>
+			<?php
+				}
+				if ($fax) {
+			?>
 			<span class="contact_card_type contact_card_phone"><?=esc_html($fax)?></span>
-			<?php } if ($email && is_email($email)) { ?>
+			<?php
+				}
+				if ($email && is_email($email)) {
+			?>
 			<a class="contact_card_type contact_card_email" href="<?=esc_url("mailto:$email", ['mailto'])?>"><?=esc_html($email)?></a>
 			<?php
 				}

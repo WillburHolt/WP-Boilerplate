@@ -36,13 +36,18 @@
 					<h2 class="flex_callout_label"><?=esc_html($label)?></h2>
 					<h3 class="flex_callout_title"><?=esc_html($title)?></h3>
 				</header>
-				<?php if (!empty($description)) { ?>
+				<?php
+					if (!empty($description)) {
+				?>
 				<div class="flex_callout_body">
 					<div class="flex_callout_description">
 						<p><?=esc_html($description)?></p>
 					</div>
 				</div>
-			<?php } if (!empty($links)) { ?>
+				<?php
+					}
+					if (!empty($links)) {
+				?>
 				<footer class="flex_callout_links">
 					<?php
 						foreach ($links as $link) {
@@ -56,7 +61,9 @@
 						}
 					?>
 				</footer>
-				<?php } ?>
+				<?php
+					}
+				?>
 			</div>
 		</div>
 	</div>

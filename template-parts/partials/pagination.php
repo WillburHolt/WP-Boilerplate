@@ -38,7 +38,7 @@
 		<?php
 			}
 			foreach ($pagination as $number) {
-				if ($number === $current_page) {
+				if ($number == $current_page) {
 		?>
 		<span class="pagination_link active"><?=$number?></span>
 		<?php
@@ -48,17 +48,18 @@
 		<?php
 				}
 			}
-			if (end($pagination) !== $pages) {
+			if (end($pagination) != $pages) {
 		?>
 		<span class="pagination_link pagination_more">…</span>
 		<a href="<?=$pagination_link."page/$number/"?>" class="pagination_link"><?=$pages?></a>
 		<?php } ?>
 	</nav>
-	<?php if ($current_page !== $pages) { ?>
+	<?php if ($current_page != $pages) { ?>
 	<a class="pagination_arrow pagination_arrow_right" href="<?=$pagination_next_link?>">
 		<span class="pagination_arrow_label">Next</span>
 			<span class="pagination_arrow_icon"><?php Boilerplate::drawSymbol('chevron_right'); ?></span>
 	</a>
 	<?php } ?>
 </div>
-<?php } ?>
+<?php
+	}
